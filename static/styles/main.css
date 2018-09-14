@@ -45,3 +45,11 @@ body {
     background-color: #0887fd;
 }
 
+/* Mobile phones, 600px and down */
+@media only screen and (max-width: 600px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+        line-height: 80px;
+    }
+}
