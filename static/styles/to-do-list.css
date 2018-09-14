@@ -1,0 +1,81 @@
+
+.to-do-list {
+    box-sizing: border-box;
+    max-width: 100%;
+    padding: 80px 10px 80px 10px;
+    margin: 20px 80px 10px 80px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.task_col {
+    width: 80%;
+}
+
+.button_col {
+    width: 20%;
+}
+
+th, td {
+    padding: 6px;
+    text-align: center;
+}
+
+caption {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+input {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 300;
+    background-color: #ffffff;
+    border-top: 1px solid rgb(255, 255, 255);
+    border-right: 1px solid rgb(255, 255, 255);
+    border-bottom: 1px solid rgb(219, 219, 219);
+    border-left:1px solid rgb(255, 255, 255);   
+}
+
+input:focus {
+    background-color: #ffffff;
+    border-bottom: 1px solid rgb(219, 219, 219);
+    outline: none;
+}
+
+button, button:active {
+    cursor: pointer;
+    font-weight: 700;
+    border: 1px solid #ffffff;
+    color: #2897ff;
+    background-color: #ffffff;
+    padding: 5px 10px;
+}
+
+button:hover {
+    color: #0060b9;
+}
+
+#submit_list {
+    cursor: pointer;
+    border: 1px solid #0887fd;
+    border-radius: 4px;
+    color: #ffffff;
+    background-color: #0887fd;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 12px 50px;
+}
+
+#submit_list:hover {
+    background-color: #0366c4;
+}
