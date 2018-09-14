@@ -1,0 +1,68 @@
+.main_content {
+    display: flex;
+    flex-direction: row;
+}
+
+.column_left {
+    flex: 25%;
+    padding: 10px;
+    width: 25%;
+}
+
+.column_right {
+    flex: 75%;
+}
+
+.column_right {
+    display: flex;
+    flex-direction: row;
+}
+
+.column_right .image_profile img {
+    height: 230px;
+    width: 230px;
+}
+
+.column_right .personal_details {
+    margin-left: 30px;
+    margin-top: 15px;
+}
+
+.column_left ul {
+    list-style-type: none;
+    width: 200px;
+}
+
+.column_left ul li a {
+    display: block;
+    color: #000000;
+    padding: 10px 16px;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-bottom: 5px;
+
+}
+
+.column_left ul li a.active {
+    background-color: #9ea0a5;
+    color: #000000;
+}
+
+.column_left ul li a:hover:not(.active) {
+    background-color: rgb(219, 219, 219);
+    color: #000000;
+}
+
+@media screen and (max-width: 1024px) {
+    .main_content {
+        flex-direction: column
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .column_right {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+}
