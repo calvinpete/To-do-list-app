@@ -1,17 +1,19 @@
+.personal_details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .signup {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     box-sizing: border-box;
-    max-width: 100%;
-    padding-top: 80px;
-    padding-bottom: 80px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-left: 80px;
-    margin-right: 80px;
-    margin-top: 20px;
+    width: 40%;
+    padding-top: 20px;
+    padding-bottom: 50px;
+    margin-top: 50px;
     margin-bottom: 10px;
     background-color: #ffffff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
@@ -47,4 +49,11 @@ input {
 
 .submit_button button:hover {
     background-color: #0366c4;
+}
+
+@media only screen and (max-width: 1120px) {
+    .signup {
+        width: 70%;
+        margin-top: 30px;
+    }
 }
