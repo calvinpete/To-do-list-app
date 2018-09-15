@@ -1,18 +1,20 @@
+.personal_details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .login {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     box-sizing: border-box;
-    max-width: 100%;
+    width: 40%;
     padding-top: 80px;
     padding-bottom: 80px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-left: 80px;
-    margin-right: 80px;
-    margin-top: 30px;
-    margin-bottom: 10px;
+    margin-top: 80px;
+    margin-bottom: 20px;
     background-color: #ffffff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
 }
@@ -47,4 +49,11 @@ input {
 
 .submit_button button:hover {
     background-color: #0366c4;
+}
+
+@media only screen and (max-width: 1120px) {
+    .login {
+        width: 70%;
+        margin-top: 30px;
+    }
 }
