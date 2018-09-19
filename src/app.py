@@ -25,6 +25,7 @@ if __name__ == "__main__":
             while type(home_selection) is int:
                 # Allows a user to sign up
                 if home_selection is 1:
+                    print ("\nPlease create an account with us")
                     name = str(input("Enter your name: "))  # Allows a user to enter his/her name
                     password = str(input("Enter your password: "))  # Allows a user to enter his/her password
                     if len(name) + len(password) != 0:
