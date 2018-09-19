@@ -35,3 +35,11 @@ if __name__ == "__main__":
                     else:
                         print("Invalid entry, please try again")
                         continue
+                # Allows the user to login and use the app
+                if home_selection is 2:
+                    pass
+                # Allows the user to exit the application
+                if home_selection is 3:
+                    print ("Thank you for using the To_do list app.")
+                    exit_app = True
+                    break
