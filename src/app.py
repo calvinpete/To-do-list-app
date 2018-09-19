@@ -37,7 +37,21 @@ if __name__ == "__main__":
                         continue
                 # Allows the user to login and use the app
                 if home_selection is 2:
-                    pass
+                    print ("\nPlease login into your account.")
+                    name = str(input("Enter your name: "))  # Allows a user to enter his/her name
+                    password = str(input("Enter your password: "))  # Allows a user to enter his/her password
+                    if len(name) + len(password) != 0:
+                        if login(name, password):  # Allows the user to sign in
+                            print (dashboard)
+                            pass
+                        else:
+                            print ("Sorry, that user name does not exist, kindly create an account with us.")
+                            # Takes the user back to the home_page
+                            print(home_page)
+                            home_selection = int(input("selection: "))
+                    else:
+                        print("Invalid entry, please try again")
+                        continue
                 # Allows the user to exit the application
                 if home_selection is 3:
                     print ("Thank you for using the To_do list app.")
