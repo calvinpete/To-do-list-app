@@ -17,7 +17,7 @@ def add_account(name, password):
 def login(name, password):
     """
     This function returns true if the password and corresponding name exist in the accounts dictionary
-    or else add them to the accounts dictionary
+    or else return False
     :param name:
     :param password:
     :return: True
@@ -26,4 +26,4 @@ def login(name, password):
         if password == key and name == value:
             return True
     else:
-        add_account(name, password)
+        return False
