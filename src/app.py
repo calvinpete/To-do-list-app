@@ -59,30 +59,24 @@ if __name__ == "__main__":
                             else:  # In case of an invalid task input
                                 print ("Invalid entry\n")
                                 continue
+                        # Allows a user to delete a task
                         if dashboard_selection is 2:
-                            task = str(input("Enter a task to remove: "))  # Allows a user to delete a task
-                            if not task.isspace() and task is not "":  # Checks for a valid task input
-                                delete_task(task)
-                                print (dashboard)
-                                dashboard_selection = input("selection: ")
-                            else:  # In case of an invalid task input
-                                print ("Invalid entry\n")
-                                continue
+                            task = str(input("Enter a task to remove: "))
+                            delete_task(task)
+                            print (dashboard)
+                            dashboard_selection = input("selection: ")
+                        # Allows a user to delete all tasks created
                         if dashboard_selection is 3:
-                            delete_all_tasks()  # Allows a user to delete all tasks created
+                            delete_all_tasks()
                             print("All tasks deleted")
                             print(dashboard)
                             dashboard_selection = input("selection: ")
                         # Allows a user to mark a task as finished
                         if dashboard_selection is 4:
                             task = str(input("Enter the task to mark: "))
-                            if not task.isspace() and task is not "":  # Checks for a valid task input
-                                mark_as_finished(task)
-                                print (dashboard)
-                                dashboard_selection = input("selection: ")
-                            else:  # In case of an invalid task input
-                                print ("Invalid entry\n")
-                                continue
+                            mark_as_finished(task)
+                            print (dashboard)
+                            dashboard_selection = input("selection: ")
                         # Allows a user to navigate back to the home_page
                         if dashboard_selection is 5:
                             print (home_page)
