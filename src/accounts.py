@@ -10,8 +10,13 @@ def add_account(name, password):
     :param password:
     :return:
     """
-    accounts[password] = name
-    return accounts
+    for key, value in accounts.items():
+        if password == key and name == value:
+            print ("User already exists")
+            return accounts
+    else:
+        accounts[password] = name
+        return accounts
 
 
 def login(name, password):
