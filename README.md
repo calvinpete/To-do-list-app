@@ -19,7 +19,7 @@ Virtual Enviroment
 Clone the project by running this in the terminal
 
 ```
-git clone https://github.com/calvinpete/StackOverflow-lite/tree/API
+git clone https://github.com/calvinpete/To-do-list-app/tree/python
 ```
 
 Activate the virtualenv by running this command in the terminal
