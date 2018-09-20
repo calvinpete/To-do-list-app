@@ -8,7 +8,7 @@ if __name__ == "__main__":
     home_page = '\nWelcome to the To-do list\n1. Sign up\n2. Login\n3. Exit\n'
 
     dashboard = '\nSelect Option:\n0: View all Tasks\n1: Create Task\n2: Delete Task\n' \
-                '3: Delete all Tasks\n4: Mark a Task as finished\n5. Back to the home page\n'
+                '3: Delete all Tasks\n4: Mark a Task as finished\n5. Log out\n'
 
     exit_app = False
 
@@ -83,6 +83,10 @@ if __name__ == "__main__":
                             else:  # In case of an invalid task input
                                 print ("Invalid entry\n")
                                 continue
+                        # Allows a user to navigate back to the home_page
+                        if dashboard_selection is 5:
+                            print (home_page)
+                            home_selection = input("selection: ")
                 else:  # In case an unregistered user tries to login
                     print ("Sorry, that user name does not exist, kindly create an account with us.")
                     # Takes the user back to the home_page
