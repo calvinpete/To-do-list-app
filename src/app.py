@@ -63,7 +63,6 @@ if __name__ == "__main__":
                             task = str(input("Enter a task to remove: "))  # Allows a user to delete a task
                             if not task.isspace() and task is not "":  # Checks for a valid task input
                                 delete_task(task)
-                                print("The task is deleted")
                                 print (dashboard)
                                 dashboard_selection = input("selection: ")
                             else:  # In case of an invalid task input
