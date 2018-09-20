@@ -7,8 +7,8 @@ if __name__ == "__main__":
 
     home_page = '\nWelcome to the To-do list\n1. Sign up\n2. Login\n3. Exit\n'
 
-    dashboard = '\nSelect Option:\n1: Create Task\n2: Delete Task\n3: Delete all Tasks\n4: Mark a Task as finished\n' \
-                '5. Back to the home page\n'
+    dashboard = '\nSelect Option:\n0: View all Tasks\n1: Create Task\n2: Delete Task\n' \
+                '3: Delete all Tasks\n4: Mark a Task as finished\n5. Back to the home page\n'
 
     exit_app = False
 
@@ -43,6 +43,11 @@ if __name__ == "__main__":
                     print (dashboard)
                     dashboard_selection = input("selection: ")
                     while type(dashboard_selection) is int:
+                        if dashboard_selection is 0:
+                            print("\nMy To Do list")
+                            print (todo_list)  # Allows a user to view all his tasks
+                            print (dashboard)
+                            dashboard_selection = input("selection: ")
                         if dashboard_selection is 1:
                             task = str(input("Enter a task to add: "))  # Allows a user to create a task
                             if not task.isspace() and task is not "":  # Checks for a valid task input
