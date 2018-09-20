@@ -37,6 +37,7 @@ def mark_as_finished(task):
                 return todo_list
             else:
                 todo_list[todo_list.index(i)] = task + ' [finished]'
+                print("Task successfully marked")
                 return todo_list
     else:
         print ("The task does not exist")
