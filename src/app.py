@@ -44,7 +44,19 @@ if __name__ == "__main__":
                     if len(name) + len(password) != 0:
                         if login(name, password):  # Allows the user to sign in
                             print (dashboard)
-                            pass
+                            dashboard_selection = input("selection: ")
+                            while type(dashboard_selection) is int:
+                                if dashboard_selection is 1:
+                                    task = str(input("Enter a task to add: "))
+                                    if not task.isspace() and task is not "":
+                                        create_task(task)
+                                        print("The task is added")
+                                        print (dashboard)
+                                        dashboard_selection = input("selection: ")
+                                    else:
+                                        print ("Invalid entry\n")
+                                        continue
+
                         else:
                             print ("Sorry, that user name does not exist, kindly create an account with us.")
                             # Takes the user back to the home_page
