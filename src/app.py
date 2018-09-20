@@ -44,13 +44,15 @@ if __name__ == "__main__":
                     print (dashboard)
                     dashboard_selection = input("selection: ")
                     while type(dashboard_selection) is int:
+                        # Allows a user to view all his tasks
                         if dashboard_selection is 0:
                             print("\nMy To Do list")
-                            print (todo_list)  # Allows a user to view all his tasks
+                            print (todo_list)
                             print (dashboard)
                             dashboard_selection = input("selection: ")
+                        # Allows a user to create a task
                         if dashboard_selection is 1:
-                            task = str(input("Enter a task to add: "))  # Allows a user to create a task
+                            task = str(input("Enter a task to add: "))
                             if not task.isspace() and task is not "":  # Checks for a valid task input
                                 create_task(task)
                                 print("The task is added")
