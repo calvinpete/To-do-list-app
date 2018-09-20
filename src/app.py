@@ -38,56 +38,52 @@ if __name__ == "__main__":
                 print ("\nPlease login into your account.")
                 name = str(input("Enter your name: "))  # Allows a user to enter his/her name
                 password = str(input("Enter your password: "))  # Allows a user to enter his/her password
-                if login(name, password):  # Allows the user to sign in
-                    print ("\nWelcome {}".format(name))
-                    print (dashboard)
-                    dashboard_selection = input("selection: ")
-                    # Allows a user to view all his tasks
-                    if dashboard_selection is 0:
-                        print("\nMy To Do list")
-                        print (todo_list)
-                        continue
-                    # Allows a user to create a task
-                    if dashboard_selection is 1:
-                        task = str(input("Enter a task to add: "))
-                        if not task.isspace() and task is not "":  # Checks for a valid task input
-                            create_task(task)
-                            print("The task is added")
-                            print (dashboard)
-                            dashboard_selection = input("selection: ")
-                        else:  # In case of an invalid task input
-                            print ("Invalid entry\n")
-                            continue
-                    # Allows a user to delete a task
-                    elif dashboard_selection is 2:
-                        task = str(input("Enter a task to remove: "))
-                        delete_task(task)
+                Exit_dashboard = False
+                if login(name, password):
+                    while not Exit_dashboard:  # Allows the user to sign in
+                        print ("\nWelcome {}".format(name))
                         print (dashboard)
                         dashboard_selection = input("selection: ")
-                    # Allows a user to delete all tasks created
-                    elif dashboard_selection is 3:
-                        delete_all_tasks()
-                        print("All tasks deleted")
-                        print(dashboard)
-                        dashboard_selection = input("selection: ")
-                    # Allows a user to mark a task as finished
-                    elif dashboard_selection is 4:
-                        task = str(input("Enter the task to mark: "))
-                        mark_as_finished(task)
-                        print (dashboard)
-                        dashboard_selection = input("selection: ")
-                    # Allows a user to navigate back to the home_page
-                    elif dashboard_selection is 5:
-                        print (home_page)
-                        home_selection = input("selection: ")
-                    else:
-                        print ("\nOption does not exist, please try again")
-                        print(dashboard)
-                        dashboard_selection = input("selection: ")
+                        # Allows a user to view all his tasks
+                        if dashboard_selection is 0:
+                            print("\nMy To Do list")
+                            print (todo_list)
+                            continue  # Takes the user back to the dashboard
+                        # Allows a user to create a task
+                        if dashboard_selection is 1:
+                            task = str(input("Enter a task to add: "))
+                            if not task.isspace() and task is not "":  # Checks for a valid task input
+                                create_task(task)
+                                print("The task is added")
+                                continue  # Takes the user back to the dashboard
+                            else:  # In case of an invalid task input
+                                print ("Invalid entry\n")
+                                continue  # Takes the user back to the dashboard
+                        # Allows a user to delete a task
+                        elif dashboard_selection is 2:
+                            task = str(input("Enter a task to remove: "))
+                            delete_task(task)
+                            continue  # Takes the user back to the dashboard
+                        # Allows a user to delete all tasks created
+                        elif dashboard_selection is 3:
+                            delete_all_tasks()
+                            print("All tasks deleted")
+                            continue  # Takes the user back to the dashboard
+                        # Allows a user to mark a task as finished
+                        elif dashboard_selection is 4:
+                            task = str(input("Enter the task to mark: "))
+                            mark_as_finished(task)
+                            continue  # Takes the user back to the dashboard
+                        # Allows a user to navigate back to the home_page
+                        elif dashboard_selection is 5:
+                            Exit_dashboard = True
+                            break
+                        else:
+                            print ("\nOption does not exist, please try again")
+                            continue  # Takes the user back to the dashboard
                 else:  # In case an unregistered user tries to login
                     print ("Sorry, that user name does not exist, kindly create an account with us.")
-                    # Takes the user back to the home_page
-                    continue
+                    continue  # Takes the user back to the home_page
             # Allows the user to exit the application
             if home_selection is 3:
                 print ("Thank you for using the To_do list app.")
