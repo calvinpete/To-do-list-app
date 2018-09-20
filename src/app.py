@@ -15,7 +15,7 @@ if __name__ == "__main__":
     while not exit_app:
         # Allows a user to choose an option on the home_page
         print(home_page)
-        home_selection = input("selection: ")
+        home_selection = int(input("selection: "))
         # Checks if the input is valid, if not rerun the loop
         if 0 <= home_selection >= 4:
             print ("Option does not exist, please try again")
@@ -43,7 +43,7 @@ if __name__ == "__main__":
                     while not Exit_dashboard:  # Allows the user to sign in
                         print ("\nWelcome {}".format(name))
                         print (dashboard)
-                        dashboard_selection = input("selection: ")
+                        dashboard_selection = int(input("selection: "))
                         # Allows a user to view all his tasks
                         if dashboard_selection is 0:
                             print("\nMy To Do list")
