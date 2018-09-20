@@ -68,6 +68,11 @@ if __name__ == "__main__":
                             else:  # In case of an invalid task input
                                 print ("Invalid entry\n")
                                 continue
+                        if dashboard_selection is 3:
+                            delete_all_tasks()  # Allows a user to delete all tasks created
+                            print("All tasks deleted")
+                            print(dashboard)
+                            dashboard_selection = input("selection: ")
                 else:  # In case an unregistered user tries to login
                     print ("Sorry, that user name does not exist, kindly create an account with us.")
                     # Takes the user back to the home_page
