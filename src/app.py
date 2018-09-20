@@ -40,6 +40,7 @@ if __name__ == "__main__":
                 name = str(input("Enter your name: "))  # Allows a user to enter his/her name
                 password = str(input("Enter your password: "))  # Allows a user to enter his/her password
                 if login(name, password):  # Allows the user to sign in
+                    print ("\nWelcome {}".format(name))
                     print (dashboard)
                     dashboard_selection = input("selection: ")
                     while type(dashboard_selection) is int:
