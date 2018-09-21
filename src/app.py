@@ -72,7 +72,7 @@ if __name__ == "__main__":
                             continue  # Takes the user back to the dashboard
                         # Allows a user to mark a task as finished
                         elif dashboard_selection is 4:
-                            task = str(input("Enter the task to mark: "))
+                            task = int(input("Enter the task to mark: "))
                             tasks.mark_as_finished(task)
                             continue  # Takes the user back to the dashboard
                         # Allows a user to navigate back to the home_page

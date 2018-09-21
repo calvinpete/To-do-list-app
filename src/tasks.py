@@ -22,14 +22,14 @@ def delete_task(task):
     for i in todo_list:
         if i.startswith(task[:3]):
             if i.endswith('[finished]'):
-                print ("You can not delete a task already completed")
+                print("You can not delete a task already completed")
                 return todo_list
             else:
                 todo_list.remove(i)
                 print("Task successfully removed from the list")
                 return todo_list
     else:
-        print ("The task does not exist")
+        print("The task does not exist")
         return todo_list
 
 
@@ -40,17 +40,17 @@ def mark_as_finished(task):
     :param task:
     :return: todo_list
     """
-    for i in todo_list:
-        if i.startswith(task[:3]):
-            if i.endswith('[finished]'):
-                print ("The task was already done")
+    for i in range(len(todo_list)):
+        if i == task:
+            if todo_list[i].endswith('[finished]'):
+                print("The task was already done")
                 return todo_list
             else:
-                todo_list[todo_list.index(i)] = task + ' [finished]'
+                todo_list[i] = todo_list[task] + ' [finished]'
                 print("Task successfully marked")
                 return todo_list
     else:
-        print ("The task does not exist")
+        print("The task does not exist")
 
 
 def delete_all_tasks():
