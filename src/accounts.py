@@ -12,7 +12,7 @@ def add_account(name, password):
     """
     for key, value in accounts.items():
         if password == key and name == value:
-            print ("User already exists")
+            print("User already exists")
             return accounts
     else:
         accounts[password] = name
