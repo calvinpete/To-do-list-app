@@ -1,22 +1,42 @@
-# To-Do list app
+# To-Do list Console Application
 
-To-Do list app is a platform that provides users with the ability to create different to-do lists.
+To-Do list console application is a platform that provides users with the ability to create different to-do lists.
 
 ## Getting Started
 
-Clone the project on your local machine for development and testing purposes.
+To run the application, make sure you have the following installed on your local machine.
+
+### Prerequisites
+
+```
+Git
+Python 3.6
+Virtual Enviroment
+```
+
+### Starting the application
+
+Clone the project by running this in the terminal
+
+```
+git clone https://github.com/calvinpete/To-do-list-app/tree/python
+```
+
+Activate the virtualenv by running this command in the terminal
+
+```
+source venv/bin/activate
+```
+
+Run the application in the terminal
+
+```
+python app.py
+```
 
 ## Project Links
 
-Visit: [To-Do list](https://github.com/calvinpete/To-do-list-app.git)
-
-## User Urls
-
-* [Sign up](https://calvinpete.github.io/To-do-list-app/templates/UI/signup.html)
-* [Log In](https://calvinpete.github.io/To-do-list-app/templates/UI/login.html)
-* [Home page](https://calvinpete.github.io/To-do-list-app/templates/UI/homepage.html)
-* [Create a New list](https://calvinpete.github.io/To-do-list-app/templates/UI/to-do-list.html)
-* [User profile](https://calvinpete.github.io/To-do-list-app/templates/UI/user_profile.html)
+Visit: [To-Do list](https://github.com/calvinpete/To-do-list-app/tree/python)
 
 ## Features
 
@@ -28,20 +48,18 @@ Visit: [To-Do list](https://github.com/calvinpete/To-do-list-app.git)
 * Users can delete the whole to-do list at once which also deletes the corresponding to-do list items.
 * Users can share their to do list with other users who have accounts.
 
-## Prerequisites
-
-* Web browser
-* Internet
-
 ## Built With
 
-* Html5
-* CSS
+* [Python](https://www.python.org/) - General Purpose Language
+
+## Demo link
+
+The app is demonstrated on this [link](https://repl.it/@CalvinPete/To-Do-list-Console-app)
+
 
 ## Authors
 
 Calvin Tinka
 
 ## License
-
-This application is opensource.
+This app is open source hence free to all users
