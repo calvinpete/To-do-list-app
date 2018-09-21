@@ -54,7 +54,7 @@ Visit: [To-Do list](https://github.com/calvinpete/To-do-list-app/tree/python)
 
 ## Demo link
 
-The app is demonstrated on this [link](https://repl.it/@CalvinPete/ToDo-list-python-console)
+The app is demonstrated on this [link](https://repl.it/@CalvinPete/To-Do-list-Console-app)
 
 
 ## Authors
