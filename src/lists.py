@@ -11,3 +11,14 @@ def create_list(title):
     """
     record[title] = []
     return record
+
+
+def add_task(title, item):
+    """
+    This adds a to do list item
+    :param title:
+    :param item:
+    :return:
+    """
+    record[title].append(item)
+    return record[title]
