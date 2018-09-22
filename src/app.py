@@ -8,7 +8,8 @@ if __name__ == "__main__":
     dashboard = '\n      Welcome to the To-do list\n======================================\n' \
                 '\nSelect Option:\n0: View all To do lists\n1: Create a To do list\n2: Edit a To do list\n' \
                 '3: Exit\n'
-    task_options = '1: Add a Task\n2: Find a Task\n3: Delete a Task\n4. Edit a Task\n5. Delete all Tasks\n'
+    task_options = '\n1: Add a Task\n2: Find a Task\n3: Delete a Task\n4. Edit a Task\n5. Delete all Tasks\n' \
+                   '6: Save the changes'
 
     exit_model = False
 
@@ -58,8 +59,29 @@ if __name__ == "__main__":
                     continue
             # Allows a user to update a to do list
             if int(dashboard_selection) is 2:
-                print("\n{}\n".format(lists.record))
-                title = str(input("Enter the title of the list to be updated: "))
+                print("\nList titles: {}\n".format(lists.record.keys()))
+                title = str(input("Enter title: "))
+                # creates a menu for edit a to do list option
+                exit_update = False
+                while not exit_update:
+                    print(task_options)
+                    # Allows a user to choose what option to update the list
+                    old_list_options = input("select: ")
+                    if not old_list_options.isdigit() and 0 <= int(old_list_options) >= 7:
+                        print("Option does not exist, please try again")
+                        continue
+                    else:
+                        # Allows a user to add a task
+                        if int(old_list_options) is 1:
+                            task = str(input("Enter a task to add: "))
+                            if not task.isspace() and task is not "":  # Checks for a valid task input
+                                lists.add_task(title, task)
+                                print("{0}: {1}".format(title, lists.record[title]))
+                                continue  # Takes the user back to the edit list menu
+                            else:  # In case of an invalid task input
+                                print("Invalid entry\n")
+                                continue  # Takes the user back to the edit list menu
+
             # Allows the user to exit the application
             if int(dashboard_selection) is 3:
                 print("Thank you for using the To_do list app.")
