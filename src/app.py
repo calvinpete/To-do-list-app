@@ -24,3 +24,12 @@ if __name__ == "__main__":
                 print("\nTo do lists\n")
                 print(lists.record)
                 continue
+            elif int(dashboard_selection) is 1:
+                title = str(input("Enter the to do list title: "))
+                if not title.isspace() and title is not "":  # Checks for a valid title input
+                    lists.create_list(title)
+                    print(lists.record)
+                    continue
+                else:
+                    print("Invalid entry, please try again")
+                    continue
