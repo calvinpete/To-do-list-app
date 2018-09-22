@@ -33,3 +33,15 @@ def find_task(title, index):
     """
     print(record[title][index])
     return record
+
+
+def delete_task(title, index):
+    """
+    This deletes a specific to do list item
+    :param title:
+    :param index:
+    :return record:
+    """
+    del record[title][index]
+    print(record[title])
+    return record
