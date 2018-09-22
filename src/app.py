@@ -19,3 +19,8 @@ if __name__ == "__main__":
         if not dashboard_selection.isdigit() or 0 <= int(dashboard_selection) >= 7:
             print("Option does not exist, please try again")
             continue
+        else:  # In case of a valid input, run code for either option selected
+            if int(dashboard_selection) is 0:
+                print("\nTo do lists\n")
+                print(lists.record)
+                continue
