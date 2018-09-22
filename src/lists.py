@@ -29,7 +29,7 @@ def find_task(title, index):
     This finds a specific item in the to do list
     :param title:
     :param index:
-    :return:
+    :return record:
     """
     print(record[title][index])
     return record
@@ -53,9 +53,18 @@ def edit_task(title, index, item):
     :param title:
     :param index:
     :param item:
-    :return:
+    :return record:
     """
     record[title][index] = item
     print(record[title])
     return record
 
+
+def clear_task(title):
+    """
+    This clears the whole to do list
+    :param title:
+    :return record:
+    """
+    del record[title][:]
+    return record
