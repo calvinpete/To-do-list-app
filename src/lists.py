@@ -45,3 +45,17 @@ def delete_task(title, index):
     del record[title][index]
     print(record[title])
     return record
+
+
+def edit_task(title, index, item):
+    """
+    This edits a specific to do list item
+    :param title:
+    :param index:
+    :param item:
+    :return:
+    """
+    record[title][index] = item
+    print(record[title])
+    return record
+
