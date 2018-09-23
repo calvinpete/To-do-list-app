@@ -81,6 +81,16 @@ if __name__ == "__main__":
                             else:  # In case of an invalid task input
                                 print("Invalid entry\n")
                                 continue  # Takes the user back to the edit list menu
+                        # Allows a user to find a specific task
+                        if int(old_list_options) is 2:
+                            index = input("Enter the task to find: ")
+                            # checks for validation of the list index
+                            if not index.isdigit() or int(index) <= len(lists.record[title]):
+                                print("This task does not exist, please try again")
+                                continue  # Takes the user back to the edit list menu
+                            else:
+                                lists.find_task(title, int(index))
+                                continue  # Takes the user back to the edit list menu
 
             # Allows the user to exit the application
             if int(dashboard_selection) is 3:
