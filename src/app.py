@@ -101,6 +101,21 @@ if __name__ == "__main__":
                             else:
                                 lists.delete_task(title, int(index))
                                 continue  # Takes the user back to the edit list menu
+                        if int(old_list_options) is 4:
+                            index = input("Enter the index of the task to change: ")
+                            # checks for validation of the list index
+                            if not index.isdigit() or int(index) >= len(lists.record[title]):
+                                print("This task does not exist, please try again")
+                                continue  # Takes the user back to the edit list menu
+                            else:
+                                task = str(input("Enter the new task: "))
+                                if not task.isspace() and task is not "":  # Checks for a valid task input
+                                    lists.edit_task(title, int(index), task)
+                                    continue  # Takes the user back to the edit list menu
+                                else:  # In case of an invalid input
+                                    print("Invalid entry\n")
+                                    continue  # Takes the user back to the edit list menu
+
             # Allows the user to exit the application
             if int(dashboard_selection) is 3:
                 print("Thank you for using the To_do list app.")
