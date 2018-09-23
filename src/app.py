@@ -120,6 +120,10 @@ if __name__ == "__main__":
                         if int(old_list_options) is 5:
                             lists.clear_task(title)
                             continue
+                        if int(old_list_options) is 6:
+                            exit_update = True
+                            print("{}'s changes saved".format(title))
+                            break
             # Allows the user to exit the application
             if int(dashboard_selection) is 3:
                 print("Thank you for using the To_do list app.")
