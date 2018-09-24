@@ -36,17 +36,16 @@ python app.py
 
 ## Project Links
 
-Visit: [To-Do list](https://github.com/calvinpete/To-do-list-app/tree/python)
+Visit: [To-Do list](https://github.com/calvinpete/To-do-list-app/tree/datastructures)
 
 ## Features
 
-* Users can create an account and log in.
-* Users can create a todo-list.
+* Users can create a todo-list with a specific title and a list of to do items.
 * Users can add items to the to-do list.
-* Users can remove items from the to-do list.
-* Users can mark a task to show it's done.
-* Users can delete the whole to-do list at once which also deletes the corresponding to-do list items.
-* Users can share their to do list with other users who have accounts.
+* Users can find a specific item in the to-do list.
+* Users can remove a to do item from the to-do list.
+* Users can edit a specific to do item.
+* Users can clear all items in the to-do list at once.
 
 ## Built With
 
@@ -54,7 +53,7 @@ Visit: [To-Do list](https://github.com/calvinpete/To-do-list-app/tree/python)
 
 ## Demo link
 
-The app is demonstrated on this [link](https://repl.it/@CalvinPete/To-Do-list-Console-app)
+The app is demonstrated on this [link](https://repl.it/@CalvinPete/Data-structres)
 
 
 ## Authors
