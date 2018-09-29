@@ -1,4 +1,4 @@
-recycle_bin = []
+recycle_bin = []  # This holds tasks deleted
 
 
 class Tasks:
@@ -8,14 +8,22 @@ class Tasks:
     def __init__(self):
         self.record = {}
 
-    def create_list(self, title):
+    def new_list(self, title):
         """
         This creates a todo_list with a title in a record of todo_lists
         :param title:
-        :return record:
+        :return:
         """
         self.record[title] = []
-        return self.record
+
+    def check_list(self, title):
+        """
+        This checks if a To do list already exists
+        :param title:
+        :return True:
+        """
+        if title in self.record:
+            return True
 
     def add_task(self, title, item):
         """
@@ -102,3 +110,10 @@ class Tasks:
         self.record[title].insert(index2, recycle_bin[index1])
         print(self.record[title])
         return self.record
+
+
+if __name__ == "__main__":
+    task = Tasks()
+    task.create_list("Day 1")
+    task.create_list("Day 2")
+    task.create_list("Day 1")
