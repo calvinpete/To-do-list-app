@@ -1,6 +1,6 @@
 from flask import jsonify, request
 from app import app
-from app.tasks import Tasks
+from app.tasks import Tasks, recycle_bin
 
 new_tasks = Tasks()
 
@@ -112,5 +112,19 @@ def un_mark_finished_task(title, task_id):
             return jsonify({"message": "Task successfully unmarked"}), 200
         if not new_tasks.un_mark_a_finished_task(title, index):
             return jsonify({"message": "The task not marked"}), 200
+    else:
+        return jsonify({"message": "Task does not exist"}), 404
+
+
+@app.route('/todo/api/v1/tasks/<title>/<int:recycle_bin_task_id>/<int:former_task_id>', methods=['PUT'])
+def recover_deleted_task(title, recycle_bin_task_id, former_task_id):
+    if title not in new_tasks.record:
+        return jsonify({"message": "The To do list does not exist"}), 404
+    for index in range(len(recycle_bin)):
+        if recycle_bin_task_id != index:
+            continue
+        else:
+            new_tasks.recover_deleted_task(title, recycle_bin_task_id, former_task_id)
+            return jsonify({"message": "Deleted task successfully recovered"}), 200
     else:
         return jsonify({"message": "Task does not exist"}), 404
