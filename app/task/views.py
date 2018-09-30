@@ -76,3 +76,14 @@ def remove_task(title, task_id):
 @app.route('/todo/api/v1/tasks', methods=['GET'])
 def view_to_do_lists():
     return jsonify(new_tasks.record), 200
+
+
+@app.route('/todo/api/v1/tasks/<title>', methods=['DELETE'])
+def delete_all_tasks(title):
+    if title not in new_tasks.record:
+        return jsonify({"message": "The To do list does not exist"}), 404
+    new_tasks.delete_all_tasks(title)
+    return jsonify({"message": "All tasks successfully deleted"}), 200
+
+
+
