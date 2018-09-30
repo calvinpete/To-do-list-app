@@ -99,3 +99,18 @@ def mark_finished_task(title, task_id):
             return jsonify({"message": "The task was already completed"}), 200
     else:
         return jsonify({"message": "Task does not exist"}), 404
+
+
+@app.route('/todo/api/v1/tasks/finished/<title>/<int:task_id>', methods=['PUT'])
+def un_mark_finished_task(title, task_id):
+    if title not in new_tasks.record:
+        return jsonify({"message": "The To do list does not exist"}), 404
+    for index in range(len(new_tasks.record[title])):
+        if task_id != index:
+            continue
+        if new_tasks.un_mark_a_finished_task(title, index):
+            return jsonify({"message": "Task successfully unmarked"}), 200
+        if not new_tasks.un_mark_a_finished_task(title, index):
+            return jsonify({"message": "The task not marked"}), 200
+    else:
+        return jsonify({"message": "Task does not exist"}), 404
