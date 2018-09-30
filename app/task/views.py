@@ -57,3 +57,17 @@ def add_task(title):
         return jsonify({"message": "Task successfully added"}), 201
     else:
         return jsonify({"message": "To do list does not exist"}), 404
+
+
+@app.route('/todo/api/v1/tasks/<title>/<int:task_id>', methods=['DELETE'])
+def remove_task(title, task_id):
+    if title not in new_tasks.record:
+        return jsonify({"message": "The To do list does not exist"}), 404
+    for index in range(len(new_tasks.record[title])-1):
+        if task_id != index:
+            continue
+        else:
+            new_tasks.delete_task(title, task_id)
+            return jsonify({"message": "Task successfully deleted"})
+    else:
+        return jsonify({"message": "Task does not exist"})
