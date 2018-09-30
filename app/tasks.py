@@ -44,7 +44,6 @@ class Tasks:
         """
         recycle_bin.append(self.record[title][index])
         del self.record[title][index]
-        print(self.record[title])
         return self.record
 
     def delete_all_tasks(self, title):
@@ -64,39 +63,23 @@ class Tasks:
         :param index:
         :return: todo_list
         """
-        for i in range(len(self.record[title])):
-            if i != index:
-                continue
-            if self.record[title][i].endswith('[finished]'):
-                print("The task was already done")
-                return False
-            else:
-                self.record[title][i] = self.record[title][index] + ' [finished]'
-                print("Task successfully marked")
-                return True
-        else:
-            print("The task does not exist")
+        if self.record[title][index].endswith('[finished]'):
             return False
+        else:
+            self.record[title][index] = self.record[title][index] + ' [finished]'
+            return True
 
-    def un_mark_finished_task(self, title, index):
+    def un_mark_a_finished_task(self, title, index):
         """
         This function removes the string label '[finished]' at the end of the task in the todo_list
         :param title:
         :param index:
         :return: todo_list
         """
-        for i in range(len(self.record[title])):
-            if i != index:
-                continue
-            if self.record[title][i].endswith('[finished]'):
-                self.record[title][i] = self.record[title][index].rstrip(' [finished]')
-                print("The task successfully unmarked")
-                return True
-            else:
-                print("Task not yet done")
-                return False
+        if self.record[title][index].endswith('[finished]'):
+            self.record[title][index] = self.record[title][index].rstrip(' [finished]')
+            return True
         else:
-            print("The task does not exist")
             return False
 
     def recover_deleted_task(self, title, index1, index2):
@@ -108,12 +91,5 @@ class Tasks:
         :return record:
         """
         self.record[title].insert(index2, recycle_bin[index1])
-        print(self.record[title])
+        del recycle_bin[index1]
         return self.record
-
-
-if __name__ == "__main__":
-    task = Tasks()
-    task.create_list("Day 1")
-    task.create_list("Day 2")
-    task.create_list("Day 1")
