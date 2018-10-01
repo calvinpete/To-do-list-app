@@ -15,6 +15,7 @@ class Tasks:
         :return:
         """
         self.record[title] = []
+        return self.record
 
     def check_list(self, title):
         """
@@ -44,7 +45,7 @@ class Tasks:
         """
         recycle_bin.append(self.record[title][index])
         del self.record[title][index]
-        return self.record
+        return self.record[title]
 
     def delete_all_tasks(self, title):
         """
@@ -53,7 +54,7 @@ class Tasks:
         :return record:
         """
         del self.record[title][:]
-        return self.record
+        return self.record[title]
 
     def mark_as_finished(self, title, index):
         """
@@ -92,4 +93,4 @@ class Tasks:
         """
         self.record[title].insert(index2, recycle_bin[index1])
         del recycle_bin[index1]
-        return self.record
+        return self.record[title]
