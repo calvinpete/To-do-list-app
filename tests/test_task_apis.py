@@ -77,3 +77,13 @@ class TestTaskApi(unittest.TestCase):
         response_message = json.loads(response.data.decode())
         self.assertIn("Please enter a string", response_message["message"])
 
+    def test_whitespace_entry(self):
+        """
+        This tests a post method with an invalid entry
+        """
+        response = self.app.post("/todo/api/v1/tasks", content_type="application/json",
+                                 data=json.dumps(self.test_data17))
+        self.assertEqual(response.status_code, 400)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("Title field is empty", response_message["message"])
+
