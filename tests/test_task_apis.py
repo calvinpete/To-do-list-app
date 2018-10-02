@@ -128,3 +128,13 @@ class TestTaskApi(unittest.TestCase):
         response_message = json.loads(response.data.decode())
         self.assertIn("This method is not allowed for the requested URL", response_message["message"])
 
+    def test_page_not_found(self):
+        """
+        This tests a request for a non existent page
+        """
+        response = self.app.post("/todo/api/v1/task", content_type="application/json",
+                                 data=json.dumps(self.test_data18))
+        self.assertEqual(response.status_code, 404)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("This page does not exist", response_message["message"])
+
