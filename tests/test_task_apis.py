@@ -48,6 +48,9 @@ class TestTaskApi(unittest.TestCase):
         """
         self.assertFalse(self.app is None)
 
-
+    def test_new_to_do_list(self):
+        response = self.app.post("/todo/api/v1/tasks", content_type="application/json",
+                                 data=json.dumps(self.test_data1))
+        self.assertEqual(response.status_code, 201)
 
 
