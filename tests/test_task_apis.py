@@ -27,7 +27,7 @@ class TestTaskApi(unittest.TestCase):
         self.test_data12 = {"title": 5}
         self.test_data13 = {"title": 6.8}
         self.test_data14 = {"title": ['Day 4', 8]}
-        self.test_data15 = {"title": ('Day 5',)}
+        self.test_data15 = {"title": (8,)}
         self.test_data17 = {"title": " "}
         self.test_data18 = {"title": "Day 1"}
         self.test_data2 = {"task": "Workout"}
@@ -59,10 +59,21 @@ class TestTaskApi(unittest.TestCase):
 
     def test_title_empty_field(self):
         """
-        This tests a post method with an empty title field
+        This tests a post method with no title field
         """
         response = self.app.post("/todo/api/v1/tasks", content_type="application/json",
                                  data=json.dumps(self.test_data11))
         self.assertEqual(response.status_code, 400)
         response_message = json.loads(response.data.decode())
         self.assertIn("Invalid entry, please type the title", response_message["message"])
+
+    def test_title_type(self):
+        """
+        This tests a post method with wrong data type in the request
+        """
+        response = self.app.post("/todo/api/v1/tasks", content_type="application/json",
+                                 data=json.dumps(self.test_data12))
+        self.assertEqual(response.status_code, 400)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("Please enter a string", response_message["message"])
+

@@ -29,7 +29,7 @@ def create_to_do_list():
     data = request.get_json()
     title = data['title']
     if isinstance(title, int) or isinstance(title, float) or isinstance(title, list):
-        return jsonify({"message": "Please enter a string"})
+        return jsonify({"message": "Please enter a string"}), 400
     if not title:
         return jsonify({"message": "Title field is empty"}), 400
     if title.isspace():
