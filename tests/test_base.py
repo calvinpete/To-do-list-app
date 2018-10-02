@@ -34,7 +34,8 @@ class TestBase(unittest.TestCase):
         self.test_data22 = {"task": 5}
         self.test_data23 = {"task": 7.8}
         self.test_data24 = {"task": [5]}
-        self.test_data25 = {"task": " "}
+        self.test_data25 = {"task": ""}
+        self.test_data26 = {"task": "   "}
         self.test_data3 = {"task": "Stand_ups"}
         self.test_data4 = {"task": "Update slack channel"}
         self.test_data5 = {"task": "Update Pivotal Tracker"}

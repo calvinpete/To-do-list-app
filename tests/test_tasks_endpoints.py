@@ -58,3 +58,13 @@ class TestTaskApi(TestBase):
         self.assertTrue(response.status_code, 400)
         response_message = json.loads(response.data.decode())
         self.assertIn("Please enter a string", response_message["message"])
+
+    def test_no_value_entry(self):
+        """This tests a post method with no value in the key/value pair entry"""
+        self.app.post("/todo/api/v1/tasks/", content_type="application/json",
+                      data=json.dumps(self.test_data18))
+        response = self.app.post("/todo/api/v1/tasks/Day 1", content_type="application/json",
+                                 data=json.dumps(self.test_data25))
+        self.assertEqual(response.status_code, 400)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("Task field is empty", response_message["message"])
