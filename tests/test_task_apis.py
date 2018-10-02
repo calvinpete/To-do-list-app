@@ -28,7 +28,6 @@ class TestTaskApi(unittest.TestCase):
         self.test_data13 = {"title": 6.8}
         self.test_data14 = {"title": ['Day 4', 8]}
         self.test_data15 = {"title": ('Day 5',)}
-        self.test_data16 = {"title": ""}
         self.test_data17 = {"title": " "}
         self.test_data18 = {"title": "Day 1"}
         self.test_data2 = {"task": "Workout"}
@@ -49,8 +48,17 @@ class TestTaskApi(unittest.TestCase):
         self.assertFalse(self.app is None)
 
     def test_new_to_do_list(self):
+        """
+        This tests post a new to do list method
+        """
         response = self.app.post("/todo/api/v1/tasks", content_type="application/json",
                                  data=json.dumps(self.test_data1))
         self.assertEqual(response.status_code, 201)
 
-
+    def test_title_empty_field(self):
+        """
+        This tests a post method with an empty title field
+        """
+        response = self.app.post("/todo/api/v1/tasks", content_type="application/json",
+                                 data=json.dumps(self.test_data11))
+        self.assertEqual(response.status_code, 400)
