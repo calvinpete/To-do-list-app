@@ -4,7 +4,7 @@ from instance.config import app_config
 from app.task.views import *
 
 
-class TestTaskApi(unittest.TestCase):
+class TestListApi(unittest.TestCase):
     """
     This is a class that runs unittests on the tasks api endpoints
     """
@@ -28,17 +28,6 @@ class TestTaskApi(unittest.TestCase):
         self.test_data13 = {"title": 6.8}
         self.test_data14 = {"title": ['Day 4', 8]}
         self.test_data17 = {"title": " "}
-        self.test_data18 = {"title": "Day 1"}
-        self.test_data2 = {"task": "Workout"}
-        self.test_data21 = {}
-        self.test_data22 = {"task": 5}
-        self.test_data23 = {"task": 7.8}
-        self.test_data24 = {"task": [5]}
-        self.test_data25 = {"task": " "}
-        self.test_data3 = {"task": "Stand_ups"}
-        self.test_data4 = {"task": "Update slack channel"}
-        self.test_data5 = {"task": "Update Pivotal Tracker"}
-        self.test_data6 = {"task": "Run Github commands"}
 
     def test_existence(self):
         """
@@ -123,7 +112,7 @@ class TestTaskApi(unittest.TestCase):
         This tests a wrong method used for a wrong request
         """
         response = self.app.delete("/todo/api/v1/tasks", content_type="application/json",
-                                   data=json.dumps(self.test_data18))
+                                   data=json.dumps(self.test_data1))
         self.assertEqual(response.status_code, 405)
         response_message = json.loads(response.data.decode())
         self.assertIn("This method is not allowed for the requested URL", response_message["message"])
@@ -133,8 +122,11 @@ class TestTaskApi(unittest.TestCase):
         This tests a request for a non existent page
         """
         response = self.app.post("/todo/api/v1/task", content_type="application/json",
-                                 data=json.dumps(self.test_data18))
+                                 data=json.dumps(self.test_data1))
         self.assertEqual(response.status_code, 404)
         response_message = json.loads(response.data.decode())
         self.assertIn("This page does not exist", response_message["message"])
 
+
+if __name__ == "__main__":
+    unittest.main()
