@@ -70,6 +70,18 @@ class TestListApi(TestBase):
         response_message = json.loads(response.data.decode())
         self.assertIn("Title field is empty", response_message["message"])
 
+    def test_list_exists(self):
+        """
+        This tests
+        """
+        self.app.post("/todo/api/v1/tasks", content_type="application/json",
+                      data=json.dumps(self.test_data1))
+        response = self.app.post("/todo/api/v1/tasks", content_type="application/json",
+                                 data=json.dumps(self.test_data18))
+        self.assertEqual(response.status_code, 409)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("To do list already exists", response_message["message"])
+
     def test_no_data(self):
         """
         This tests a post method with no data in the request
