@@ -1,40 +1,12 @@
 import unittest
 import json
-from instance.config import app_config
-from app.task.views import *
+from tests.test_base import TestBase
 
 
-class TestListApi(unittest.TestCase):
+class TestListApi(TestBase):
     """
-    This is a class that runs unittests on the tasks api endpoints
+    This is a class that runs unittests on the to do list api endpoint
     """
-    def setUp(self):
-        """
-        This method runs before each task by:
-        - creating an app
-        - a flask test client object
-        - sample data
-        """
-        # app reconfiguration
-        app.config.from_object(app_config["testing"])
-
-        # flask test client object
-        self.app = app.test_client()
-
-        # sample data
-        self.test_data1 = {"title": "Day 1"}
-        self.test_data11 = {}
-        self.test_data12 = {"title": 5}
-        self.test_data13 = {"title": 6.8}
-        self.test_data14 = {"title": ['Day 4', 8]}
-        self.test_data17 = {"title": " "}
-
-    def test_existence(self):
-        """
-        This tests existence of an app
-        """
-        self.assertFalse(self.app is None)
-
     def test_new_to_do_list(self):
         """
         This tests post a new to do list method
