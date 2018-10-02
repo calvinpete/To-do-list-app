@@ -85,7 +85,7 @@ class TestListApi(TestBase):
         This tests
         """
         self.app.post("/todo/api/v1/tasks", content_type="application/json",
-                      data=json.dumps(self.test_data1))
+                      data=json.dumps(self.test_data18))
         response = self.app.post("/todo/api/v1/tasks", content_type="application/json",
                                  data=json.dumps(self.test_data18))
         self.assertEqual(response.status_code, 409)
