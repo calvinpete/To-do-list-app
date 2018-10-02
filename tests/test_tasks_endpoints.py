@@ -68,3 +68,14 @@ class TestTaskApi(TestBase):
         self.assertEqual(response.status_code, 400)
         response_message = json.loads(response.data.decode())
         self.assertIn("Task field is empty", response_message["message"])
+
+    def test_whitespace_entry(self):
+        """This tests a post method with a whitespace as an entry in the request"""
+        self.app.post("/todo/api/v1/tasks/", content_type="application/json",
+                      data=json.dumps(self.test_data18))
+        response = self.app.post("/todo/api/v1/tasks/Day 1", content_type="application/json",
+                                 data=json.dumps(self.test_data26))
+        self.assertEqual(response.status_code, 400)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("Task field is empty", response_message["message"])
+
