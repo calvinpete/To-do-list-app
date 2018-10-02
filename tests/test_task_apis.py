@@ -27,7 +27,6 @@ class TestTaskApi(unittest.TestCase):
         self.test_data12 = {"title": 5}
         self.test_data13 = {"title": 6.8}
         self.test_data14 = {"title": ['Day 4', 8]}
-        self.test_data15 = {"title": (8,)}
         self.test_data17 = {"title": " "}
         self.test_data18 = {"title": "Day 1"}
         self.test_data2 = {"task": "Workout"}
@@ -67,23 +66,47 @@ class TestTaskApi(unittest.TestCase):
         response_message = json.loads(response.data.decode())
         self.assertIn("Invalid entry, please type the title", response_message["message"])
 
-    def test_title_type(self):
+    def test_title_int_type(self):
         """
-        This tests a post method with wrong data type in the request
+        This tests a post method with wrong integer data type in the request
         """
+        # integer data type
         response = self.app.post("/todo/api/v1/tasks", content_type="application/json",
                                  data=json.dumps(self.test_data12))
         self.assertEqual(response.status_code, 400)
         response_message = json.loads(response.data.decode())
         self.assertIn("Please enter a string", response_message["message"])
 
+    def test_title_float_type(self):
+        """
+        This tests a post method with wrong float data type in the request
+        """
+        # float data type
+        response = self.app.post("/todo/api/v1/tasks", content_type="application/json",
+                                 data=json.dumps(self.test_data13))
+        self.assertEqual(response.status_code, 400)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("Please enter a string", response_message["message"])
+
+    def test_title_list_type(self):
+        """
+        This tests a post method with wrong data type in the request
+        """
+        # list data type
+        response = self.app.post("/todo/api/v1/tasks", content_type="application/json",
+                                 data=json.dumps(self.test_data14))
+        self.assertEqual(response.status_code, 400)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("Please enter a string", response_message["message"])
+
     def test_whitespace_entry(self):
         """
-        This tests a post method with an invalid entry
+        This tests a post method with a whitespace invalid entry
         """
         response = self.app.post("/todo/api/v1/tasks", content_type="application/json",
                                  data=json.dumps(self.test_data17))
         self.assertEqual(response.status_code, 400)
         response_message = json.loads(response.data.decode())
         self.assertIn("Title field is empty", response_message["message"])
+
 
