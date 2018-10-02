@@ -87,4 +87,13 @@ class TestTaskApi(TestBase):
         response_message = json.loads(response.data.decode())
         self.assertIn("To do list does not exist", response_message["message"])
 
-
+    def test_remove_task(self):
+        """This tests a delete task route"""
+        self.app.post("/todo/api/v1/tasks", content_type="application/json",
+                      data=json.dumps(self.test_data18))
+        self.app.post("/todo/api/v1/tasks/Day 1", content_type="application/json",
+                      data=json.dumps(self.test_data3))
+        response = self.app.delete("/todo/api/v1/tasks/Day 1/0", content_type="application/json")
+        self.assertEqual(response.status_code, 200)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("Task successfully deleted", response_message["message"])
