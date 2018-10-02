@@ -118,3 +118,13 @@ class TestTaskApi(unittest.TestCase):
         response_message = json.loads(response.data.decode())
         self.assertIn("Invalid entry", response_message["message"])
 
+    def test_wrong_method(self):
+        """
+        This tests a wrong method used for a wrong request
+        """
+        response = self.app.delete("/todo/api/v1/tasks", content_type="application/json",
+                                   data=json.dumps(self.test_data18))
+        self.assertEqual(response.status_code, 405)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("This method is not allowed for the requested URL", response_message["message"])
+
