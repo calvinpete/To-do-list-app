@@ -54,6 +54,8 @@ class TestTaskApi(unittest.TestCase):
         response = self.app.post("/todo/api/v1/tasks", content_type="application/json",
                                  data=json.dumps(self.test_data1))
         self.assertEqual(response.status_code, 201)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("To do list created successfully", response_message["message"])
 
     def test_title_empty_field(self):
         """
@@ -62,3 +64,5 @@ class TestTaskApi(unittest.TestCase):
         response = self.app.post("/todo/api/v1/tasks", content_type="application/json",
                                  data=json.dumps(self.test_data11))
         self.assertEqual(response.status_code, 400)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("Invalid entry, please type the title", response_message["message"])
