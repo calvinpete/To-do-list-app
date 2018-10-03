@@ -103,4 +103,22 @@ class TestTaskApi(TestBase):
         response = self.app.get('/todo/api/v1/tasks', content_type="application/json")
         self.assertEqual(response.status_code, 200)
 
+    def test_delete_all_tasks(self):
+        """This tests a delete all tasks route"""
+        self.app.post("/todo/api/v1/tasks", content_type="application/json",
+                      data=json.dumps(self.test_data18))
+        self.app.post("/todo/api/v1/tasks/Day 1", content_type="application/json",
+                      data=json.dumps(self.test_data4))
+        self.app.post("/todo/api/v1/tasks/Day 1", content_type="application/json",
+                      data=json.dumps(self.test_data5))
+        self.app.post("/todo/api/v1/tasks/Day 1", content_type="application/json",
+                      data=json.dumps(self.test_data6))
+        response = self.app.delete("/todo/api/v1/tasks/Day 1", content_type="application/json")
+        self.assertEqual(response.status_code, 200)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("All tasks successfully deleted", response_message["message"])
+
+
+
+
 
