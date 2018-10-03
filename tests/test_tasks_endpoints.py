@@ -125,6 +125,16 @@ class TestTaskApi(TestBase):
         response_message = json.loads(response.data.decode())
         self.assertIn("The To do list does not exist", response_message["message"])
 
+    def test_mark_finished_task(self):
+        """This tests a put request that updates a status of a task"""
+        self.app.post("/todo/api/v1/tasks", content_type="application/json",
+                      data=json.dumps(self.test_data18))
+        self.app.post("/todo/api/v1/tasks/Day 1", content_type="application/json",
+                      data=json.dumps(self.test_data4))
+        response = self.app.put("/todo/api/v1/tasks/Day 1/0", content_type="application/json")
+        self.assertEqual(response.status_code, 200)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("Task successfully marked", response_message["message"])
 
 
 
