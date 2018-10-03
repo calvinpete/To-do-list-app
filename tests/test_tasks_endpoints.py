@@ -222,3 +222,15 @@ class TestTaskApi(TestBase):
         response_message = json.loads(response.data.decode())
         self.assertIn("Deleted task successfully recovered", response_message["message"])
 
+    def test_recover_nonexistent_task(self):
+        """This tests put request to recover non existent task"""
+        self.app.post("/todo/api/v1/tasks", content_type="application/json",
+                      data=json.dumps(self.test_data8))
+        self.app.post("/todo/api/v1/tasks/Session 1", content_type="application/json",
+                      data=json.dumps(self.test_data81))
+        self.app.delete("/todo/api/v1/tasks/Session 1/0", content_type="application/json")
+        response = self.app.put("/todo/api/v1/tasks/Session 1/10/1", content_type="application/json")
+        self.assertEqual(response.status_code, 404)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("Task does not exist", response_message["message"])
+
