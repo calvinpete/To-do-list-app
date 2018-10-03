@@ -20,6 +20,36 @@ def method_not_allowed(error):
     return jsonify({"message": "This method is not allowed for the requested URL"})
 
 
-# @app.route('/todo/api/v1/auth/register', methods=['POST'])
-# def register():
-#
+@app.route('/todo/api/v1/auth/register', methods=['POST'])
+def register():
+    if 'username' not in request.json or 'email_address' not in request.json or 'password' not in request.json:
+        return jsonify({"message": "please type in the username, email address and password"}), 400
+    data = request.get_json()
+    username = data['username']
+    email_address = data['email_address']
+    password = data['password']
+    if not username:
+        return jsonify({"message": "username required"}), 400
+    if not email_address:
+        return jsonify({"message": "Email address required"}), 400
+    if not password:
+        return jsonify({"message": "password required"}), 400
+    if not new_account.validate_username(username):
+        return jsonify({"message": "The username should not be less than 4 characters and have no whitespaces"}), 400
+    if not new_account.validate_email_address(email_address):
+        return jsonify({"message": "The email should follow the format of valid emails (johndoe@mail.com)"}), 400
+    if not new_account.validate_password(password):
+        return jsonify(
+            {
+                "message": "The password should not be "
+                           "less than 4 characters and should contain "
+                           "A capital letter, a small letter, a digit and a special character."
+            }
+        ), 400
+    if new_account.check_user(username, email_address, password):
+        return jsonify({"message": "User already exists"}), 409
+    else:
+        new_account.register(username, email_address, password)
+        return jsonify({"message": "You've been successfully registered"}), 201
+
+

@@ -8,6 +8,22 @@ class Account:
     def __init__(self):
         self.accounts = []  # A data structure to store user accounts
 
+    def check_user(self, username, email_address, password):
+        """
+        This checks if the user already has an account
+        :param username:
+        :param email_address:
+        :param password:
+        :return:
+        """
+        user = {
+            "username": username,
+            "email_address": email_address,
+            "password": password,
+        }
+        if user in self.accounts:
+            return True
+
     def register(self, *args):
         """
         This saves an account created by a user
@@ -23,12 +39,7 @@ class Account:
             "email_address": email_address,
             "password": password,
                 }
-        if user in self.accounts:
-            print ("User already exists")
-            return False
-        else:
-            self.accounts.append(user)
-            return "You've been successfully registered"
+        self.accounts.append(user)
 
     def login(self, username, password):
         """
@@ -65,8 +76,6 @@ class Account:
         if matcher1:
             return True
         else:
-            print("The password should not be less than 4 characters and "
-                  "should contain A capital letter, a small letter, a digit and a special character. ")
             return False
 
     def validate_username(self, username):
@@ -78,7 +87,6 @@ class Account:
         usr_name = re.compile("(^\S{4,}$)")
         matcher2 = usr_name.match(username)
         if not matcher2:
-            print("The username should not be less than 4 characters and have no whitespaces")
             return False
         else:
             return True
@@ -92,7 +100,6 @@ class Account:
         email = re.compile("(^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
         email_matcher = email.match(email_address)
         if not email_matcher:
-            print("The email should follow the format of valid emails (johndoe@mail.com)")
             return False
         else:
             return True
