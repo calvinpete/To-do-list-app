@@ -43,9 +43,10 @@ class TestBase(unittest.TestCase):
         self.test_data7 = {"title": "Mon"}
         self.test_data71 = {"task": "Breakfast"}
         self.test_data72 = {"task": "Meeting"}
-
-
-
+        self.test_data8 = {"title": "Session 1"}
+        self.test_data81 = {"task": "Reviews"}
+        self.test_data82 = {"task": "Updates"}
+        self.test_data83 = {"task": "Updates"}
 
     def test_existence(self):
         """
