@@ -191,7 +191,7 @@ class TestTaskApi(TestBase):
         self.assertIn("The task not marked", response_message["message"])
 
     def test_non_existent_marked_task(self):
-        """This tests a put request on a mon marked task"""
+        """This tests a put request on a non marked task"""
         self.app.post("/todo/api/v1/tasks", content_type="application/json",
                       data=json.dumps(self.test_data7))
         response = self.app.put("/todo/api/v1/tasks/finished/Mon/23", content_type="application/json")
@@ -199,3 +199,9 @@ class TestTaskApi(TestBase):
         response_message = json.loads(response.data.decode())
         self.assertIn("Task does not exist", response_message["message"])
 
+    def test_non_existent_marked_list(self):
+        """This tests a put request on a non existent to do list"""
+        response = self.app.put("/todo/api/v1/tasks/finished/Tue/11", content_type="application/json")
+        self.assertEqual(response.status_code, 404)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("The To do list does not exist", response_message["message"])
