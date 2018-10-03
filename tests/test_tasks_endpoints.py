@@ -157,3 +157,10 @@ class TestTaskApi(TestBase):
         response_message = json.loads(response.data.decode())
         self.assertIn("Task does not exist", response_message["message"])
 
+    def test_put_non_existent_list(self):
+        """This tests a put request on a non existent td_do list"""
+        response = self.app.put("/todo/api/v1/tasks/Day 1/0", content_type="application/json")
+        self.assertEqual(response.status_code, 404)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("The To do list does not exist", response_message["message"])
+
