@@ -81,7 +81,7 @@ class TestTaskApi(TestBase):
 
     def test_nonexistent_list(self):
         """This tests a post method with a to do list that does not exist"""
-        response = self.app.post("/todo/api/v1/tasks/Day 1", content_type="application/json",
+        response = self.app.post("/todo/api/v1/tasks/Level up", content_type="application/json",
                                  data=json.dumps(self.test_data2))
         self.assertEqual(response.status_code, 404)
         response_message = json.loads(response.data.decode())
@@ -120,7 +120,7 @@ class TestTaskApi(TestBase):
 
     def test_non_existent_todo_list(self):
         """This tests a delete all tasks route on a non existent to_do list"""
-        response = self.app.delete("/todo/api/v1/tasks/Day 1", content_type="application/json")
+        response = self.app.delete("/todo/api/v1/tasks/Home", content_type="application/json")
         self.assertEqual(response.status_code, 404)
         response_message = json.loads(response.data.decode())
         self.assertIn("The To do list does not exist", response_message["message"])
@@ -152,14 +152,14 @@ class TestTaskApi(TestBase):
         """This tests a put request on a non existent task"""
         self.app.post("/todo/api/v1/tasks", content_type="application/json",
                       data=json.dumps(self.test_data18))
-        response = self.app.put("/todo/api/v1/tasks/Day 1/0", content_type="application/json")
+        response = self.app.put("/todo/api/v1/tasks/Day 1/5", content_type="application/json")
         self.assertEqual(response.status_code, 404)
         response_message = json.loads(response.data.decode())
         self.assertIn("Task does not exist", response_message["message"])
 
     def test_put_non_existent_list(self):
-        """This tests a put request on a non existent td_do list"""
-        response = self.app.put("/todo/api/v1/tasks/Day 1/0", content_type="application/json")
+        """This tests a put request on a non existent to_do list"""
+        response = self.app.put("/todo/api/v1/tasks/Day 5/18", content_type="application/json")
         self.assertEqual(response.status_code, 404)
         response_message = json.loads(response.data.decode())
         self.assertIn("The To do list does not exist", response_message["message"])
