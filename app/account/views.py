@@ -34,6 +34,12 @@ def register():
         return jsonify({"message": "Email address required"}), 400
     if not password:
         return jsonify({"message": "password required"}), 400
+    if isinstance(username, int) or isinstance(username, float) or isinstance(username, list):
+        return jsonify({"message": "Please enter a string"}), 400
+    if isinstance(email_address, int) or isinstance(email_address, float) or isinstance(email_address, list):
+        return jsonify({"message": "Please enter a string"}), 400
+    if isinstance(password, int) or isinstance(password, float) or isinstance(password, list):
+        return jsonify({"message": "Please enter a string"}), 400
     if not new_account.validate_username(username):
         return jsonify({"message": "The username should not be less than 4 characters and have no whitespaces"}), 400
     if not new_account.validate_email_address(email_address):
