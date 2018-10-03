@@ -118,6 +118,12 @@ class TestTaskApi(TestBase):
         response_message = json.loads(response.data.decode())
         self.assertIn("All tasks successfully deleted", response_message["message"])
 
+    def test_non_existent_todo_list(self):
+        """This tests a delete all tasks route on a non existent to_do list"""
+        response = self.app.delete("/todo/api/v1/tasks/Day 1", content_type="application/json")
+        self.assertEqual(response.status_code, 404)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("The To do list does not exist", response_message["message"])
 
 
 
