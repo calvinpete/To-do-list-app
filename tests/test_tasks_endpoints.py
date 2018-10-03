@@ -1,3 +1,4 @@
+import unittest
 import json
 from tests.test_base import TestBase
 
@@ -246,3 +247,6 @@ class TestTaskApi(TestBase):
         response_message = json.loads(response.data.decode())
         self.assertIn("The To do list does not exist", response_message["message"])
 
+
+if __name__ == "__main__":
+    unittest.main()
