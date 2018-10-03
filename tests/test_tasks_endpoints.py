@@ -205,3 +205,20 @@ class TestTaskApi(TestBase):
         self.assertEqual(response.status_code, 404)
         response_message = json.loads(response.data.decode())
         self.assertIn("The To do list does not exist", response_message["message"])
+
+    def test_recover_deleted_task(self):
+        """This tests put request to recover a deleted task"""
+        self.app.post("/todo/api/v1/tasks", content_type="application/json",
+                      data=json.dumps(self.test_data8))
+        self.app.post("/todo/api/v1/tasks/Session 1", content_type="application/json",
+                      data=json.dumps(self.test_data81))
+        self.app.post("/todo/api/v1/tasks/Session 1", content_type="application/json",
+                      data=json.dumps(self.test_data82))
+        self.app.post("/todo/api/v1/tasks/Session 1", content_type="application/json",
+                      data=json.dumps(self.test_data83))
+        self.app.delete("/todo/api/v1/tasks/Session 1/1", content_type="application/json")
+        response = self.app.put("/todo/api/v1/tasks/Session 1/0/1", content_type="application/json")
+        self.assertEqual(response.status_code, 200)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("Deleted task successfully recovered", response_message["message"])
+
