@@ -40,6 +40,12 @@ class TestBase(unittest.TestCase):
         self.test_data4 = {"task": "Update slack channel"}
         self.test_data5 = {"task": "Update Pivotal Tracker"}
         self.test_data6 = {"task": "Run Github commands"}
+        self.test_data7 = {"title": "Mon"}
+        self.test_data71 = {"task": "Breakfast"}
+        self.test_data72 = {"task": "Meeting"}
+
+
+
 
     def test_existence(self):
         """
