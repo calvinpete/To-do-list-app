@@ -97,3 +97,10 @@ class TestTaskApi(TestBase):
         self.assertEqual(response.status_code, 200)
         response_message = json.loads(response.data.decode())
         self.assertIn("Task successfully deleted", response_message["message"])
+
+    def test_view_lists(self):
+        """This tests a get to do lists route"""
+        response = self.app.get('/todo/api/v1/tasks', content_type="application/json")
+        self.assertEqual(response.status_code, 200)
+
+
