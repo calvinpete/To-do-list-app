@@ -1,5 +1,6 @@
 class Config(object):
     """Parent configuration class"""
+    SECRET_KEY = "ThisShouldBeTheHardestKey"
     DEBUG = False
 
 

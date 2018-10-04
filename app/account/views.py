@@ -1,6 +1,9 @@
 from flask import jsonify, request
 from app import app
 from app.accounts import Account
+from instance.config import Config
+import jwt
+import datetime
 
 new_account = Account()
 
@@ -69,4 +72,16 @@ def login():
     if not new_account.check_password(password):
         return jsonify({"message": "Invalid password, please try again"}), 400
     else:
-        return jsonify({"message": "You have successfully logged in"}), 200
+        token = jwt.encode(
+            {
+                "username": username,
+                "exp": datetime.datetime.utcnow() + datetime.timedelta(minutes=5)
+            },
+            Config.SECRET_KEY
+        )
+        return jsonify(
+            {
+                "token": token.decode("UTF-8"),
+                "message": "You have successfully logged in"
+            }
+        ), 200
