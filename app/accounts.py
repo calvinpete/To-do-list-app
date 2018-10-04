@@ -41,25 +41,26 @@ class Account:
                 }
         self.accounts.append(user)
 
-    def login(self, username, password):
+    def check_username(self, username):
         """
-        This allows a user to sign in to his or her account
+        This checks if the username exists
         :param username:
-        :param password:
         :return:
         """
         for account in self.accounts:
             # checks if the username entered is registered
-            if username != account["username"]:
-                print("Please input the right username")
-                return False
+            if username == account["username"]:
+                return True
 
+    def check_password(self,password):
+        """
+        This checks if the password exists
+        :param password:
+        :return:
+        """
+        for account in self.accounts:
             # checks if the user has entered his/her password
-            if password != account["password"]:
-                print("Please enter the correct password")
-                return False
-            else:
-                print ("Your are logged in")
+            if password == account["password"]:
                 return True
 
     def delete_user(self):

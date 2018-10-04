@@ -59,3 +59,14 @@ def register():
         return jsonify({"message": "You've been successfully registered"}), 201
 
 
+@app.route('/todo/api/v1/auth/login', methods=['POST'])
+def login():
+    authorize = request.authorization
+    username = authorize.username
+    password = authorize.password
+    if not new_account.check_username(username):
+        return jsonify({"message": "User does not exist, please register"}), 400
+    if not new_account.check_password(password):
+        return jsonify({"message": "Invalid password, please try again"}), 400
+    else:
+        return jsonify({"message": "You have successfully logged in"}), 200
