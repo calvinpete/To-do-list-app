@@ -41,6 +41,17 @@ class Account:
                 }
         self.accounts.append(user)
 
+    def get_user(self, username):
+        """
+        This gets the username if it exists
+        :param username:
+        :return:
+        """
+        for account in self.accounts:
+            # checks if the username entered is registered
+            if username == account["username"]:
+                return account["username"]
+
     def check_username(self, username):
         """
         This checks if the username exists

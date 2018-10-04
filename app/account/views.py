@@ -1,9 +1,10 @@
+import jwt
+import datetime
 from flask import jsonify, request
 from app import app
 from app.accounts import Account
 from instance.config import Config
-import jwt
-import datetime
+from functools import wraps
 
 new_account = Account()
 
@@ -75,7 +76,7 @@ def login():
         token = jwt.encode(
             {
                 "username": username,
-                "exp": datetime.datetime.utcnow() + datetime.timedelta(minutes=5)
+                "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=24)
             },
             Config.SECRET_KEY
         )
@@ -85,3 +86,23 @@ def login():
                 "message": "You have successfully logged in"
             }
         ), 200
+
+
+def token_required(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        token = None
+        if 'x-access-token' in request.headers:
+            token = request.headers['x-access-token']
+        if not token:
+            return jsonify({"message": "Token is missing"}), 401
+        try:
+            data = jwt.decode(token, Config.SECRET_KEY)
+            current_user = new_account.get_user(username=data['username'])
+        except jwt.DecodeError:
+            return jsonify({"message": "Token is invalid"}), 401
+        except jwt.ExpiredSignatureError:
+            return jsonify({"message": "Token has expired"}), 401
+        return f(current_user, *args, **kwargs)
+
+    return decorated

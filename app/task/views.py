@@ -1,6 +1,7 @@
 from flask import jsonify, request
 from app import app
 from app.tasks import Tasks, recycle_bin
+from app.account.views import token_required
 
 new_tasks = Tasks()
 
@@ -21,7 +22,8 @@ def method_not_allowed(error):
 
 
 @app.route('/todo/api/v1/tasks', methods=['POST'])
-def create_to_do_list():
+@token_required
+def create_to_do_list(current_user):
 
     if "title" not in request.json:
         return jsonify({"message": "Invalid entry, please type the title"}), 400
@@ -41,7 +43,8 @@ def create_to_do_list():
 
 
 @app.route('/todo/api/v1/tasks/<title>', methods=['POST'])
-def add_task(title):
+@token_required
+def add_task(current_user, title):
     if "task" not in request.json:
         return jsonify({"message": "Invalid entry, please type the task"}), 400
     data = request.get_json()
@@ -60,7 +63,8 @@ def add_task(title):
 
 
 @app.route('/todo/api/v1/tasks/<title>/<int:task_id>', methods=['DELETE'])
-def remove_task(title, task_id):
+@token_required
+def remove_task(current_user, title, task_id):
     if title not in new_tasks.record:
         return jsonify({"message": "The To do list does not exist"}), 404
     for index in range(len(new_tasks.record[title])):
@@ -74,12 +78,14 @@ def remove_task(title, task_id):
 
 
 @app.route('/todo/api/v1/tasks', methods=['GET'])
-def view_to_do_lists():
+@token_required
+def view_to_do_lists(current_user):
     return jsonify(new_tasks.record), 200
 
 
 @app.route('/todo/api/v1/tasks/<title>', methods=['DELETE'])
-def delete_all_tasks(title):
+@token_required
+def delete_all_tasks(current_user, title):
     if title not in new_tasks.record:
         return jsonify({"message": "The To do list does not exist"}), 404
     new_tasks.delete_all_tasks(title)
@@ -87,7 +93,8 @@ def delete_all_tasks(title):
 
 
 @app.route('/todo/api/v1/tasks/<title>/<int:task_id>', methods=['PUT'])
-def mark_finished_task(title, task_id):
+@token_required
+def mark_finished_task(current_user, title, task_id):
     if title not in new_tasks.record:
         return jsonify({"message": "The To do list does not exist"}), 404
     for index in range(len(new_tasks.record[title])):
@@ -102,7 +109,8 @@ def mark_finished_task(title, task_id):
 
 
 @app.route('/todo/api/v1/tasks/finished/<title>/<int:task_id>', methods=['PUT'])
-def un_mark_finished_task(title, task_id):
+@token_required
+def un_mark_finished_task(current_user, title, task_id):
     if title not in new_tasks.record:
         return jsonify({"message": "The To do list does not exist"}), 404
     for index in range(len(new_tasks.record[title])):
@@ -117,7 +125,8 @@ def un_mark_finished_task(title, task_id):
 
 
 @app.route('/todo/api/v1/tasks/<title>/<int:recycle_bin_task_id>/<int:former_task_id>', methods=['PUT'])
-def recover_deleted_task(title, recycle_bin_task_id, former_task_id):
+@token_required
+def recover_deleted_task(current_user, title, recycle_bin_task_id, former_task_id):
     if title not in new_tasks.record:
         return jsonify({"message": "The To do list does not exist"}), 404
     for index in range(len(recycle_bin)):
