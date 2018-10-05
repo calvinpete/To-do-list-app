@@ -111,6 +111,29 @@ class AccountTestCase(TestBase):
         response_message = json.loads(response.data.decode())
         self.assertIn("Please enter a string", response_message["message"])
 
+    def test_password_int_data_type(self):
+        """This tests a post method with password in as an integer"""
+        response = self.app.post('/todo/api/v1/auth/register', content_type="application/json",
+                                 data=json.dumps(self.test_user18))
+        self.assertTrue(response.status_code, 400)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("Please enter a string", response_message["message"])
+
+    def test_password_float_data_type(self):
+        """This tests a post method with password in as a float"""
+        response = self.app.post('/todo/api/v1/auth/register', content_type="application/json",
+                                 data=json.dumps(self.test_user19))
+        self.assertTrue(response.status_code, 400)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("Please enter a string", response_message["message"])
+
+    def test_password_list_data_type(self):
+        """This tests a post method with password in as a list"""
+        response = self.app.post('/todo/api/v1/auth/register', content_type="application/json",
+                                 data=json.dumps(self.test_user20))
+        self.assertTrue(response.status_code, 400)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("Please enter a string", response_message["message"])
 
 
 
