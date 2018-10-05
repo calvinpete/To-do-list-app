@@ -4,9 +4,9 @@ import time
 from tests.test_base import TestBase
 
 
-class TestTaskApi(TestBase):
+class TestAddTaskApi(TestBase):
     """
-    This is a class that runs unittests on the tasks api endpoints
+    This is a class that runs unittests on the create a task api endpoint
     """
 
     def test_add_task(self):
