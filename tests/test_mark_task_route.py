@@ -4,9 +4,9 @@ import time
 from tests.test_base import TestBase
 
 
-class TestTaskApi(TestBase):
+class TestMarkTaskApi(TestBase):
     """
-    This is a class that runs unittests on the tasks api endpoints
+    This is a class that runs unittests on the mark a task as finished api endpoint
     """
 
     def test_mark_finished_task(self):

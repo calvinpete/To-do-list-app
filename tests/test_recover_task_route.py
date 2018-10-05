@@ -6,7 +6,7 @@ from tests.test_base import TestBase
 
 class TestRecoverTaskApi(TestBase):
     """
-    This is a class that runs unittests on the tasks api endpoints
+    This is a class that runs unittests on the recover a deleted task api endpoint
     """
 
     def test_recover_deleted_task(self):

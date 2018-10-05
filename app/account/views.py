@@ -61,7 +61,7 @@ def login():
         token = jwt.encode(
             {
                 "username": username,
-                "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=24)
+                "exp": datetime.datetime.utcnow() + datetime.timedelta(seconds=5)
             },
             Config.SECRET_KEY
         )

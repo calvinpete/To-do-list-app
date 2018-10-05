@@ -4,9 +4,9 @@ import time
 from tests.test_base import TestBase
 
 
-class TestTaskApi(TestBase):
+class TestDeleteTasksApi(TestBase):
     """
-    This is a class that runs unittests on the tasks api endpoints
+    This is a class that runs unittests on the delete all tasks api endpoint
     """
     def test_delete_all_tasks(self):
         """This tests a delete all tasks route"""
