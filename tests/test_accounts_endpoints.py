@@ -202,3 +202,6 @@ class AccountTestCase(TestBase):
         response_message = json.loads(response.data.decode())
         self.assertIn("Invalid password, please try again", response_message["message"])
 
+
+if __name__ == "__main__":
+    unittest.main()
