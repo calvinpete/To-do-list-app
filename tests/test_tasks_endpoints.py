@@ -1,5 +1,6 @@
 import unittest
 import json
+import time
 from tests.test_base import TestBase
 
 
@@ -19,6 +20,49 @@ class TestTaskApi(TestBase):
         self.assertTrue(response.status_code, 201)
         response_message = json.loads(response.data.decode())
         self.assertIn("Task successfully added", response_message["message"])
+
+    def test_expired_token_add_task(self):
+        """
+        This tests post a new task method with an expired token
+        """
+        self.app.post('/todo/api/v1/auth/register', content_type="application/json",
+                      data=json.dumps(self.test_user34))
+        test_user = self.app.post('/todo/api/v1/auth/login', content_type="application/json",
+                                  data=json.dumps(self.test_user34))
+        self.app.post("/todo/api/v1/tasks", content_type="application/json",
+                      data=json.dumps(self.test_data18), headers={'x-access-token': self.token})
+        logged_in_user = json.loads(test_user.data.decode())
+        self.user_token = logged_in_user["token"]
+        time.sleep(20)
+        response = self.app.post("/todo/api/v1/tasks", content_type="application/json",
+                                 data=json.dumps(self.test_data2), headers={'x-access-token': self.user_token})
+        self.assertEqual(response.status_code, 401)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("Token has expired", response_message["message"])
+
+    def test_invalid_token_to_do_list(self):
+        """
+        This tests post a new task method with an invalid token
+        """
+        self.app.post("/todo/api/v1/tasks", content_type="application/json",
+                      data=json.dumps(self.test_data18), headers={'x-access-token': self.token})
+        response = self.app.post('/todo/api/v1/tasks/Day 1', content_type="application/json",
+                                 data=json.dumps(self.test_data2), headers={'x-access-token': self.token + 'secret'})
+        self.assertEqual(response.status_code, 401)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("Token is invalid", response_message["message"])
+
+    def test_unauthorized_to_do_list(self):
+        """
+        This tests post a new to do list method without a token
+        """
+        self.app.post("/todo/api/v1/tasks", content_type="application/json",
+                      data=json.dumps(self.test_data18), headers={'x-access-token': self.token})
+        response = self.app.post('/todo/api/v1/tasks/Day 1', content_type="application/json",
+                                 data=json.dumps(self.test_data2))
+        self.assertEqual(response.status_code, 401)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("Token is missing", response_message["message"])
 
     def test_no_entry(self):
         """This tests a post method with no task field"""
