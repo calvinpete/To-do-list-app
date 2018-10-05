@@ -39,5 +39,31 @@ class AccountTestCase(TestBase):
         response_message = json.loads(response.data.decode())
         self.assertIn("please type in the username, email address and password", response_message["message"])
 
+    def test_no_username(self):
+        """This tests a post method no username"""
+        response = self.app.post('/todo/api/v1/auth/register', content_type="application/json",
+                                 data=json.dumps(self.test_user31))
+        self.assertTrue(response.status_code, 400)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("username required", response_message["message"])
+
+    def test_no_email_address(self):
+        """This tests a post method no email_address"""
+        response = self.app.post('/todo/api/v1/auth/register', content_type="application/json",
+                                 data=json.dumps(self.test_user32))
+        self.assertTrue(response.status_code, 400)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("Email address required", response_message["message"])
+
+    def test_no_password(self):
+        """This tests a post method no password"""
+        response = self.app.post('/todo/api/v1/auth/register', content_type="application/json",
+                                 data=json.dumps(self.test_user33))
+        self.assertTrue(response.status_code, 400)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("password required", response_message["message"])
+
+
+
 
 
