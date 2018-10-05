@@ -163,5 +163,13 @@ class AccountTestCase(TestBase):
                       "A capital letter, a small letter, a digit and a special character.",
                       response_message["message"])
 
+    def test_user_already_exists(self):
+        """This tests a post method with user credentials already posted"""
+        self.app.post('/todo/api/v1/auth/register', content_type="application/json", data=json.dumps(self.test_user1))
+        response = self.app.post('/todo/api/v1/auth/register', content_type="application/json",
+                                 data=json.dumps(self.test_user27))
+        self.assertTrue(response.status_code, 409)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("User already exists", response_message["message"])
 
 
