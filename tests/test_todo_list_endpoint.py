@@ -17,6 +17,16 @@ class TestListApi(TestBase):
         response_message = json.loads(response.data.decode())
         self.assertIn("To do list created successfully", response_message["message"])
 
+    def test_invalid_token_to_do_list(self):
+        """
+        This tests post a new to do list method with an invalid token
+        """
+        response = self.app.post("/todo/api/v1/tasks", content_type="application/json",
+                                 data=json.dumps(self.test_data1), headers={'x-access-token': self.token + 'secret'})
+        self.assertEqual(response.status_code, 401)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("Token is invalid", response_message["message"])
+
     def test_unauthorized_to_do_list(self):
         """
         This tests post a new to do list method without a token
