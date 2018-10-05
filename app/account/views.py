@@ -50,9 +50,9 @@ def register():
 
 @app.route('/todo/api/v1/auth/login', methods=['POST'])
 def login():
-    authorize = request.authorization
-    username = authorize.username
-    password = authorize.password
+    data = request.get_json()
+    username = data['username']
+    password = data['password']
     if not new_account.check_username(username):
         return jsonify({"message": "User does not exist, please register"}), 400
     if not new_account.check_password(password):

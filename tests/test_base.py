@@ -1,4 +1,6 @@
 import unittest
+import json
+from requests.auth import HTTPBasicAuth
 from instance.config import app_config
 from app.task.views import *
 from app.accounts import Account
@@ -30,6 +32,8 @@ class TestBase(unittest.TestCase):
         self.test_data15 = {"title": ""}
         self.test_data17 = {"title": " "}
         self.test_data18 = {"title": "Day 1"}
+        self.test_user100 = {"username": "MarionKelta", "email_address": "MKta@gmail.com", "password": "Liv3Rp0@71/"}
+        self.test_user101 = {"username": "MarionKelta", "password": "Liv3Rp0@71/"}
         self.test_data2 = {"task": "Workout"}
         self.test_data21 = {}
         self.test_data22 = {"task": 5}
@@ -70,6 +74,13 @@ class TestBase(unittest.TestCase):
         self.test_user28 = {"email_address": "JohnP@gmail.com", "password": "Hal0-pEt7&"}
         self.test_user29 = {"username": "JohnP", "password": "Hal0-pEt7&"}
         self.test_user30 = {"username": "JohnP", "email_address": "JohnP@gmail.com"}
+
+        # sample user
+        self.app.post('/todo/api/v1/auth/register', content_type="application/json", data=json.dumps(self.test_user100))
+        login_test_user = self.app.post('/todo/api/v1/auth/login', content_type="application/json",
+                                        data=json.dumps(self.test_user100))
+        user_logged_in_data = json.loads(login_test_user.data.decode())
+        self.token = user_logged_in_data["token"]
 
     def test_existence(self):
         """

@@ -12,7 +12,7 @@ class TestListApi(TestBase):
         This tests post a new to do list method
         """
         response = self.app.post("/todo/api/v1/tasks", content_type="application/json",
-                                 data=json.dumps(self.test_data1))
+                                 data=json.dumps(self.test_data1), headers={'x-access-token': self.token})
         self.assertEqual(response.status_code, 201)
         response_message = json.loads(response.data.decode())
         self.assertIn("To do list created successfully", response_message["message"])
@@ -22,7 +22,7 @@ class TestListApi(TestBase):
         This tests a post method with no title field
         """
         response = self.app.post("/todo/api/v1/tasks", content_type="application/json",
-                                 data=json.dumps(self.test_data11))
+                                 data=json.dumps(self.test_data11), headers={'x-access-token': self.token})
         self.assertEqual(response.status_code, 400)
         response_message = json.loads(response.data.decode())
         self.assertIn("Invalid entry, please type the title", response_message["message"])
@@ -33,7 +33,7 @@ class TestListApi(TestBase):
         """
         # integer data type
         response = self.app.post("/todo/api/v1/tasks", content_type="application/json",
-                                 data=json.dumps(self.test_data12))
+                                 data=json.dumps(self.test_data12), headers={'x-access-token': self.token})
         self.assertEqual(response.status_code, 400)
         response_message = json.loads(response.data.decode())
         self.assertIn("Please enter a string", response_message["message"])
@@ -44,7 +44,7 @@ class TestListApi(TestBase):
         """
         # float data type
         response = self.app.post("/todo/api/v1/tasks", content_type="application/json",
-                                 data=json.dumps(self.test_data13))
+                                 data=json.dumps(self.test_data13), headers={'x-access-token': self.token})
         self.assertEqual(response.status_code, 400)
         response_message = json.loads(response.data.decode())
         self.assertIn("Please enter a string", response_message["message"])
@@ -55,7 +55,7 @@ class TestListApi(TestBase):
         """
         # list data type
         response = self.app.post("/todo/api/v1/tasks", content_type="application/json",
-                                 data=json.dumps(self.test_data14))
+                                 data=json.dumps(self.test_data14), headers={'x-access-token': self.token})
         self.assertEqual(response.status_code, 400)
         response_message = json.loads(response.data.decode())
         self.assertIn("Please enter a string", response_message["message"])
@@ -65,7 +65,7 @@ class TestListApi(TestBase):
         This tests a post method with no value in the key/value pair entry
         """
         response = self.app.post("/todo/api/v1/tasks", content_type="application/json",
-                                 data=json.dumps(self.test_data15))
+                                 data=json.dumps(self.test_data15), headers={'x-access-token': self.token})
         self.assertEqual(response.status_code, 400)
         response_message = json.loads(response.data.decode())
         self.assertIn("Title field is empty", response_message["message"])
@@ -75,7 +75,7 @@ class TestListApi(TestBase):
         This tests a post method with a whitespace invalid entry
         """
         response = self.app.post("/todo/api/v1/tasks", content_type="application/json",
-                                 data=json.dumps(self.test_data17))
+                                 data=json.dumps(self.test_data17), headers={'x-access-token': self.token})
         self.assertEqual(response.status_code, 400)
         response_message = json.loads(response.data.decode())
         self.assertIn("Title field is empty", response_message["message"])
@@ -85,9 +85,9 @@ class TestListApi(TestBase):
         This tests
         """
         self.app.post("/todo/api/v1/tasks", content_type="application/json",
-                      data=json.dumps(self.test_data18))
+                      data=json.dumps(self.test_data18), headers={'x-access-token': self.token})
         response = self.app.post("/todo/api/v1/tasks", content_type="application/json",
-                                 data=json.dumps(self.test_data18))
+                                 data=json.dumps(self.test_data18), headers={'x-access-token': self.token})
         self.assertEqual(response.status_code, 409)
         response_message = json.loads(response.data.decode())
         self.assertIn("To do list already exists", response_message["message"])
@@ -96,7 +96,8 @@ class TestListApi(TestBase):
         """
         This tests a post method with no data in the request
         """
-        response = self.app.post("/todo/api/v1/tasks", content_type="application/json")
+        response = self.app.post("/todo/api/v1/tasks", content_type="application/json",
+                                 headers={'x-access-token': self.token})
         self.assertEqual(response.status_code, 400)
         response_message = json.loads(response.data.decode())
         self.assertIn("Invalid entry", response_message["message"])
@@ -106,7 +107,7 @@ class TestListApi(TestBase):
         This tests a wrong method used for a wrong request
         """
         response = self.app.delete("/todo/api/v1/tasks", content_type="application/json",
-                                   data=json.dumps(self.test_data1))
+                                   data=json.dumps(self.test_data1), headers={'x-access-token': self.token})
         self.assertEqual(response.status_code, 405)
         response_message = json.loads(response.data.decode())
         self.assertIn("This method is not allowed for the requested URL", response_message["message"])
@@ -116,7 +117,7 @@ class TestListApi(TestBase):
         This tests a request for a non existent page
         """
         response = self.app.post("/todo/api/v1/task", content_type="application/json",
-                                 data=json.dumps(self.test_data1))
+                                 data=json.dumps(self.test_data1), headers={'x-access-token': self.token})
         self.assertEqual(response.status_code, 404)
         response_message = json.loads(response.data.decode())
         self.assertIn("This page does not exist", response_message["message"])
