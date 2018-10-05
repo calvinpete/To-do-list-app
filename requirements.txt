@@ -34,7 +34,6 @@ Flask-RESTful==0.3.6
 Flask-Script==2.0.6
 Flask-SQLAlchemy==2.3.2
 Flask-WTF==0.14.2
-Foundations==2.1.0
 funcsigs==1.0.2
 futures==3.2.0
 idna==2.7
