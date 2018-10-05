@@ -87,6 +87,29 @@ class AccountTestCase(TestBase):
         response_message = json.loads(response.data.decode())
         self.assertIn("Please enter a string", response_message["message"])
 
+    def test_email_address_int_data_type(self):
+        """This tests a post method with email_address in as an integer"""
+        response = self.app.post('/todo/api/v1/auth/register', content_type="application/json",
+                                 data=json.dumps(self.test_user15))
+        self.assertTrue(response.status_code, 400)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("Please enter a string", response_message["message"])
+
+    def test_email_address_float_data_type(self):
+        """This tests a post method with email_address in as a float"""
+        response = self.app.post('/todo/api/v1/auth/register', content_type="application/json",
+                                 data=json.dumps(self.test_user16))
+        self.assertTrue(response.status_code, 400)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("Please enter a string", response_message["message"])
+
+    def test_email_address_list_data_type(self):
+        """This tests a post method with email_address in as a list"""
+        response = self.app.post('/todo/api/v1/auth/register', content_type="application/json",
+                                 data=json.dumps(self.test_user17))
+        self.assertTrue(response.status_code, 400)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("Please enter a string", response_message["message"])
 
 
 
