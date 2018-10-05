@@ -24,22 +24,21 @@ class Account:
         if user in self.accounts:
             return True
 
-    def register(self, *args):
+    def register(self,  username, email_address, password):
         """
         This saves an account created by a user
-        :param args:
+        :param username:
+        :param email_address:
+        :param password:
         :return:
         """
-        username = args[0]
-        email_address = args[1]
-        password = args[2]
-
         user = {
             "username": username,
             "email_address": email_address,
             "password": password,
                 }
         self.accounts.append(user)
+        return self.accounts
 
     def get_user(self, username):
         """
@@ -63,7 +62,7 @@ class Account:
             if username == account["username"]:
                 return True
 
-    def check_password(self,password):
+    def check_password(self, password):
         """
         This checks if the password exists
         :param password:
