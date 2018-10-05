@@ -185,5 +185,12 @@ class AccountTestCase(TestBase):
         data = jwt.decode(response_message["token"], Config.SECRET_KEY)
         self.assertEqual(self.test_user25["username"], data["username"])
 
+    def test_nonexistent_user(self):
+        """This tests a login post method with an unregistered user"""
+        response = self.app.post('/todo/api/v1/auth/login', content_type="application/json",
+                                 data=json.dumps(self.test_user24))
+        self.assertTrue(response.status_code, 400)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("User does not exist, please register", response_message["message"])
 
 
