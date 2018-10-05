@@ -35,7 +35,6 @@ Flask-Script==2.0.6
 Flask-SQLAlchemy==2.3.2
 Flask-WTF==0.14.2
 funcsigs==1.0.2
-futures==3.2.0
 idna==2.7
 imagesize==1.0.0
 ipaddress==1.0.22
@@ -55,7 +54,6 @@ mccabe==0.6.1
 more-itertools==4.3.0
 mutagen==1.38
 mysqlclient==1.3.10
-Oncilla==0.1.0
 packaging==17.1
 pathlib2==2.3.2
 pbr==4.2.0
@@ -63,17 +61,14 @@ pipreqs==0.4.9
 pluggy==0.7.1
 psutil==5.4.2
 psycopg2==2.7.5
-puddletag==1.2.0
 py==1.5.4
 pyacoustid==1.1.2
 pycairo==1.16.2
 pycparser==2.18
 pycrypto==2.6.1
 Pygments==2.2.0
-pygobject==3.26.1
 PyJWT==1.6.4
 pylint==1.8.3
-pymad==0.10
 pyOpenSSL==18.0.0
 pyparsing==2.2.0
 pytest==3.7.1
