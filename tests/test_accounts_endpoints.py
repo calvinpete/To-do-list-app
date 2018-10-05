@@ -1,5 +1,7 @@
 import unittest
 import json
+import jwt
+from instance.config import Config
 from tests.test_base import TestBase
 
 
@@ -171,5 +173,17 @@ class AccountTestCase(TestBase):
         self.assertTrue(response.status_code, 409)
         response_message = json.loads(response.data.decode())
         self.assertIn("User already exists", response_message["message"])
+
+    def test_login(self):
+        """This tests the login route"""
+        self.app.post('/todo/api/v1/auth/register', content_type="application/json", data=json.dumps(self.test_user25))
+        response = self.app.post('/todo/api/v1/auth/login', content_type="application/json",
+                                 data=json.dumps(self.test_user25))
+        self.assertTrue(response.status_code, 200)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("You have successfully logged in", response_message["message"])
+        data = jwt.decode(response_message["token"], Config.SECRET_KEY)
+        self.assertEqual(self.test_user25["username"], data["username"])
+
 
 
