@@ -77,6 +77,8 @@ class TestBase(unittest.TestCase):
         self.test_user31 = {"username": "", "email_address": "JohnP@gmail.com", "password": "Ha90?e=WW"}
         self.test_user32 = {"username": "JohnP", "email_address": "", "password": "Ha90?e=WW"}
         self.test_user33 = {"username": "JohnP", "email_address": "JohnP@gmail.com", "password": ""}
+        self.test_user34 = {"username": "JoeCole", "email_address": "JC10@gmail.com", "password": "Lo5sw-?eqWQ1"}
+        self.test_user35 = {"username": "JoeCole", "email_address": "JC10@gmail.com", "password": "Lo5sw-?eqWQ1vweiuf"}
 
         # sample user
         self.app.post('/todo/api/v1/auth/register', content_type="application/json", data=json.dumps(self.test_user100))

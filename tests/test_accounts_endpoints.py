@@ -193,4 +193,12 @@ class AccountTestCase(TestBase):
         response_message = json.loads(response.data.decode())
         self.assertIn("User does not exist, please register", response_message["message"])
 
+    def test_incorrect_login_password(self):
+        """This tests a login post method with an incorrect password"""
+        self.app.post('/todo/api/v1/auth/register', content_type="application/json", data=json.dumps(self.test_user34))
+        response = self.app.post('/todo/api/v1/auth/login', content_type="application/json",
+                                 data=json.dumps(self.test_user35))
+        self.assertTrue(response.status_code, 400)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("Invalid password, please try again", response_message["message"])
 
