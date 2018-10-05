@@ -153,6 +153,15 @@ class AccountTestCase(TestBase):
         self.assertIn("The email should follow the format of valid emails (johndoe@mail.com)",
                       response_message["message"])
 
+    def test_validate_password(self):
+        """This tests a post method with an invalid password"""
+        response = self.app.post('/todo/api/v1/auth/register', content_type="application/json",
+                                 data=json.dumps(self.test_user21))
+        self.assertTrue(response.status_code, 400)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("The password should not be less than 4 characters and should contain "
+                      "A capital letter, a small letter, a digit and a special character.",
+                      response_message["message"])
 
 
 
