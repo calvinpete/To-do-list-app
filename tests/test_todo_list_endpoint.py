@@ -17,6 +17,16 @@ class TestListApi(TestBase):
         response_message = json.loads(response.data.decode())
         self.assertIn("To do list created successfully", response_message["message"])
 
+    def test_unauthorized_to_do_list(self):
+        """
+        This tests post a new to do list method without a token
+        """
+        response = self.app.post("/todo/api/v1/tasks", content_type="application/json",
+                                 data=json.dumps(self.test_data1))
+        self.assertEqual(response.status_code, 401)
+        response_message = json.loads(response.data.decode())
+        self.assertIn("Token is missing", response_message["message"])
+
     def test_title_empty_field(self):
         """
         This tests a post method with no title field
