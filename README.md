@@ -50,7 +50,7 @@ python run.py
 Run this command in the terminal
 
 ```
-pytest tests.py
+python3 -m unittest -v
 ```
 
 ### Running tests with coverage
