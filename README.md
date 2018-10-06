@@ -13,7 +13,7 @@ To run the application, make sure you have the following installed on your local
 
 ```
 Git
-Python 3.6
+Python 3.6.3
 Flask
 JSON Web tokens
 Virtual Enviroment
@@ -42,7 +42,7 @@ pip install -r requirements.txt
 Run the application in the terminal
 
 ```
-python run.py
+python3 run.py
 ```
 
 ## Running the tests
