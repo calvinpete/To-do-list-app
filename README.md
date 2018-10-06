@@ -1,6 +1,9 @@
-# To-Do list Console Application
 
-To-Do list console application is a platform that provides users with the ability to create different to-do lists.
+[![Build Status](https://travis-ci.org/calvinpete/To-do-list-app.svg?branch=Flask)](https://travis-ci.org/calvinpete/To-do-list-app)    [![Coverage Status](https://img.shields.io/coveralls/github/calvinpete/To-do-list-app/Flask.svg)](https://coveralls.io/github/calvinpete/To-do-list-app?branch=Flask)   [![Test Coverage](https://api.codeclimate.com/v1/badges/fd5b8c13551753d5a7d1/test_coverage)](https://codeclimate.com/github/calvinpete/To-do-list-app/test_coverage)
+
+# To-Do list API Endpoints
+
+The api endpoints enable you to create an account, login, create a to do list, add a task, remove a task, delete all tasks view all to do lists created, mark a task as finished, un mark an incomplete task and recover a deleted task
 
 ## Getting Started
 
@@ -11,6 +14,8 @@ To run the application, make sure you have the following installed on your local
 ```
 Git
 Python 3.6
+Flask
+JSON Web tokens
 Virtual Enviroment
 ```
 
@@ -19,7 +24,7 @@ Virtual Enviroment
 Clone the project by running this in the terminal
 
 ```
-git clone https://github.com/calvinpete/To-do-list-app/tree/python
+git clone https://github.com/calvinpete/To-do-list-app/tree/Flask
 ```
 
 Activate the virtualenv by running this command in the terminal
@@ -28,35 +33,58 @@ Activate the virtualenv by running this command in the terminal
 source venv/bin/activate
 ```
 
+Install the packages.
+
+```
+pip install -r requirements.txt
+```
+
 Run the application in the terminal
 
 ```
-python app.py
+python run.py
 ```
 
-## Project Links
+## Running the tests
 
-Visit: [To-Do list](https://github.com/calvinpete/To-do-list-app/tree/python)
+Run this command in the terminal
 
-## Features
+```
+pytest tests.py
+```
 
-* Users can create an account and log in.
-* Users can create a todo-list.
-* Users can add items to the to-do list.
-* Users can remove items from the to-do list.
-* Users can mark a task to show it's done.
-* Users can delete the whole to-do list at once which also deletes the corresponding to-do list items.
-* Users can share their to do list with other users who have accounts.
+### Running tests with coverage
+
+You can run tests with coverage by running this command in the terminal
+
+```
+nosetests --with-coverage --cover-package=app
+```
+
+### Features
+
+|               Endpoint                           |          Functionality      |
+| -------------------------------------------------|:---------------------------:|
+| POST /auth/register                              | Create an account           |
+| POST /auth/login                                 | Login                       |
+| POST /tasks                                      | Create a To do List         |
+| POST /task/title                                 | Add a task                  |
+| DELETE /tasks/title/taskId                       | Delete a task               |
+| DELETE /tasks/title                              | Delete all tasks            |
+| PUT /tasks/title/taskId                          | Mark finished task          |
+| PUT /tasks/finished/title/taskId                 | Un mark finished task       |
+| PUT /tasks/title/recycle_binID/former_taskId     | Recover deleted task        |
+
+
+
+## Deployment
+
+The app is deployed on this [link](https://stackoverflw-litev2.herokuapp.com/api/v1/)
 
 ## Built With
 
-* [Python](https://www.python.org/) - General Purpose Language
-
-## Demo link
-
-The app is demonstrated on this [link](https://repl.it/@CalvinPete/To-Do-list-Console-app)
-
-
+* [Python 3.6.3](https://www.python.org/) - General Purpose Language
+* [Flask](http://flask.pocoo.org/) - Python Micro Web Framework
 ## Authors
 
 Calvin Tinka
