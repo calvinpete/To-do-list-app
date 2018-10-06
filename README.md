@@ -79,7 +79,7 @@ nosetests --with-coverage --cover-package=app
 
 ## Deployment
 
-The app is deployed on this [link](https://stackoverflw-litev2.herokuapp.com/api/v1/)
+The app is deployed on this [link](https://todo-list-appv1.herokuapp.com/api/v1/)
 
 ## Built With
 
